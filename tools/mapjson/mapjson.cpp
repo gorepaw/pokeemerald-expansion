@@ -740,7 +740,9 @@ void process_groups(string groups_filepath, vector<string> &map_filepaths, strin
         }
         string map_name = json_to_string(map_data, "name");
 
-        if ((version == "emerald" && region != "REGION_HOENN")
+        // emerald+ spike: an Emerald build accepts Kanto maps too, so the FRLG
+        // region can be used as postgame content in a Hoenn game.
+        if ((version == "emerald" && region != "REGION_HOENN" && region != "REGION_KANTO")
          || (version == "firered" && region != "REGION_KANTO")) {
             invalid_maps.push_back(map_name);
         }
@@ -780,7 +782,8 @@ string generate_layout_headers_text(Json layouts_data) {
             else if (version == "firered")
                 layout_version = "frlg";
         }
-        if ((version == "emerald" && layout_version != "emerald")
+        // emerald+ spike: emit frlg layouts in an Emerald build as well.
+        if ((version == "emerald" && layout_version != "emerald" && layout_version != "frlg")
          || (version == "firered" && layout_version != "frlg"))
             continue;
         string layoutName = json_to_string(layout, "name");
@@ -838,7 +841,8 @@ string generate_layouts_table_text(Json layouts_data) {
             else if (version == "firered")
                 layout_version = "frlg";
         }
-        if ((version == "emerald" && layout_version != "emerald") || (version == "firered" && layout_version != "frlg")) {
+        // emerald+ spike: keep frlg layouts in the table for an Emerald build.
+        if ((version == "emerald" && layout_version != "emerald" && layout_version != "frlg") || (version == "firered" && layout_version != "frlg")) {
             text << "\t.4byte NULL\n";
         } else {
             string layout_name = json_to_string(layout, "name", true);

@@ -599,7 +599,10 @@ gStdScripts_End::
 	.include "data/maps/Route119_House/scripts.inc"
 	.include "data/maps/Route124_DivingTreasureHuntersHouse/scripts.inc"
 
-.if IS_FRLG
+@ emerald+: FRLG map scripts are assembled in Emerald builds too, so Kanto maps
+@ have their _MapScripts symbols. Emerald's own includes above are already
+@ unconditional, so this just makes the two sides symmetric.
+.if 1
 
 @ FRLG scripts
 	.include "data/maps/BattleColosseum_2P_Frlg/scripts.inc"

@@ -865,7 +865,12 @@
 //       MAX_TRAINERS_COUNT can be increased but will take up additional saveblock space
 
 #define TRAINERS_COUNT_EMERALD     855
-#define MAX_TRAINERS_COUNT_EMERALD 864
+// emerald+: raised from 864 to make room for the FRLG trainers, which are
+// re-based to (TRAINERS_COUNT_EMERALD + n) = 856..1478 in opponents_frlg.h so
+// Kanto can be walkable postgame content. 1536 leaves ~57 spare IDs.
+// Cost: (1536 - 864) / 8 = 84 bytes of the SaveBlock1 flag array (304 free).
+// This shifts TRAINER_FLAGS_END and every flag after it, so it breaks old saves.
+#define MAX_TRAINERS_COUNT_EMERALD 1536
 
 #if IS_FRLG
 #define TRAINERS_COUNT                      TRAINERS_COUNT_FRLG

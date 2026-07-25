@@ -1558,12 +1558,17 @@ void GenerateBattlePyramidWildMon(enum Species forceSpecies)
         Free(abilities);
     }
 
+#if !P_ALL_PERFECT_IVS
+    // Vanilla difficulty ramp: at high streaks, Pyramid wild mons roll 15-31 IVs.
+    // With P_ALL_PERFECT_IVS every mon already has 31s, so applying this would
+    // make high-streak encounters *weaker* than standard. Skipped.
     if (gSaveBlock2Ptr->frontier.pyramidWinStreaks[gSaveBlock2Ptr->frontier.lvlMode] >= 140)
     {
         id = (Random() % 17) + 15;
         for (i = 0; i < NUM_STATS; i++)
             SetMonData(&gParties[B_TRAINER_OPPONENT_A][0], MON_DATA_HP_IV + i, &id);
     }
+#endif
 
     CalculateMonStats(&gParties[B_TRAINER_OPPONENT_A][0]);
 }
@@ -1627,6 +1632,8 @@ void GenerateBattlePyramidWildMon(enum Species forceSpecies)
     for (i = 0; i < MAX_MON_MOVES; i++)
         SetMonMoveSlot(&gParties[B_TRAINER_OPPONENT_A][0], wildMons[id].moves[i], i);
 
+#if !P_ALL_PERFECT_IVS
+    // See note in the other GenerateBattlePyramidWildMon above.
     // UB: Reading outside the array as lvl was used for mon level instead of frontier lvl mode.
     #ifndef UBFIX
     if (gSaveBlock2Ptr->frontier.pyramidWinStreaks[lvl] >= 140)
@@ -1638,6 +1645,7 @@ void GenerateBattlePyramidWildMon(enum Species forceSpecies)
         for (i = 0; i < NUM_STATS; i++)
             SetMonData(&gParties[B_TRAINER_OPPONENT_A][0], MON_DATA_HP_IV + i, &id);
     }
+#endif
     CalculateMonStats(&gParties[B_TRAINER_OPPONENT_A][0]);
 }
 #endif

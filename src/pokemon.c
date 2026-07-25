@@ -903,6 +903,15 @@ void SetBoxMonIVs(struct BoxPokemon *mon, u8 fixedIV)
 {
     u32 i, value;
 
+#if P_ALL_PERFECT_IVS
+    // Every Pokemon gets 31s in all stats, however it was generated. This is the
+    // single choke point for IV generation: wild encounters, gifts, eggs, static
+    // legendaries, enemy trainers and Frontier facility mons all route through
+    // here, including via the fixedIV path below.
+    SetBoxMonPerfectIVs(mon, NUM_STATS);
+    return;
+#endif
+
     if (fixedIV < USE_RANDOM_IVS)
     {
         for (i = 0; i < NUM_STATS; i++)

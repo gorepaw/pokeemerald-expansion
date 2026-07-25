@@ -164,14 +164,77 @@ RustboroCity_DevonCorp_3F_EventScript_GiveExpShare::
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 	setflag FLAG_RECEIVED_EXP_SHARE
 	msgbox RustboroCity_DevonCorp_3F_Text_ExplainExpShare, MSGBOX_DEFAULT
+	goto RustboroCity_DevonCorp_3F_EventScript_OfferKantoStarter
+	end
+
+RustboroCity_DevonCorp_3F_EventScript_MrStoneAfterFavor::
+	goto_if_unset FLAG_RECEIVED_KANTO_STARTER, RustboroCity_DevonCorp_3F_EventScript_OfferKantoStarter
+	msgbox RustboroCity_DevonCorp_3F_Text_NotFamiliarWithTrends, MSGBOX_DEFAULT
 	closemessage
 	applymovement VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection
 	waitmovement 0
 	release
 	end
 
-RustboroCity_DevonCorp_3F_EventScript_MrStoneAfterFavor::
-	msgbox RustboroCity_DevonCorp_3F_Text_NotFamiliarWithTrends, MSGBOX_DEFAULT
+@ emerald+: Mr. Stone thanks the player for the Devon favour with a Kanto starter.
+@ Reachable from the Exp Share scene and from talking to him again afterwards, so
+@ declining is never permanent.
+RustboroCity_DevonCorp_3F_EventScript_OfferKantoStarter::
+	message RustboroCity_DevonCorp_3F_Text_OfferKantoStarter
+	waitmessage
+	multichoice 15, 4, MULTI_KANTO_STARTERS, FALSE
+	switch VAR_RESULT
+	case 0, RustboroCity_DevonCorp_3F_EventScript_ChooseBulbasaur
+	case 1, RustboroCity_DevonCorp_3F_EventScript_ChooseCharmander
+	case 2, RustboroCity_DevonCorp_3F_EventScript_ChooseSquirtle
+	case 3, RustboroCity_DevonCorp_3F_EventScript_DeclineKantoStarter
+	case MULTI_B_PRESSED, RustboroCity_DevonCorp_3F_EventScript_DeclineKantoStarter
+	end
+
+RustboroCity_DevonCorp_3F_EventScript_ChooseBulbasaur::
+	setvar VAR_TEMP_1, SPECIES_BULBASAUR
+	goto RustboroCity_DevonCorp_3F_EventScript_GiveKantoStarter
+	end
+
+RustboroCity_DevonCorp_3F_EventScript_ChooseCharmander::
+	setvar VAR_TEMP_1, SPECIES_CHARMANDER
+	goto RustboroCity_DevonCorp_3F_EventScript_GiveKantoStarter
+	end
+
+RustboroCity_DevonCorp_3F_EventScript_ChooseSquirtle::
+	setvar VAR_TEMP_1, SPECIES_SQUIRTLE
+	goto RustboroCity_DevonCorp_3F_EventScript_GiveKantoStarter
+	end
+
+RustboroCity_DevonCorp_3F_EventScript_GiveKantoStarter::
+	bufferspeciesname STR_VAR_1, VAR_TEMP_1
+	givemon VAR_TEMP_1, 5
+	goto_if_eq VAR_RESULT, MON_CANT_GIVE, RustboroCity_DevonCorp_3F_EventScript_NoRoomForKantoStarter
+	setflag FLAG_RECEIVED_KANTO_STARTER
+	playfanfare MUS_OBTAIN_ITEM
+	message RustboroCity_DevonCorp_3F_Text_ReceivedKantoStarter
+	waitmessage
+	waitfanfare
+	goto_if_eq VAR_RESULT, MON_GIVEN_TO_PC, RustboroCity_DevonCorp_3F_EventScript_KantoStarterToPC
+	goto RustboroCity_DevonCorp_3F_EventScript_EndKantoStarter
+	end
+
+RustboroCity_DevonCorp_3F_EventScript_KantoStarterToPC::
+	msgbox RustboroCity_DevonCorp_3F_Text_KantoStarterSentToPC, MSGBOX_DEFAULT
+	goto RustboroCity_DevonCorp_3F_EventScript_EndKantoStarter
+	end
+
+RustboroCity_DevonCorp_3F_EventScript_NoRoomForKantoStarter::
+	msgbox RustboroCity_DevonCorp_3F_Text_NoRoomForKantoStarter, MSGBOX_DEFAULT
+	goto RustboroCity_DevonCorp_3F_EventScript_EndKantoStarter
+	end
+
+RustboroCity_DevonCorp_3F_EventScript_DeclineKantoStarter::
+	msgbox RustboroCity_DevonCorp_3F_Text_DeclineKantoStarter, MSGBOX_DEFAULT
+	goto RustboroCity_DevonCorp_3F_EventScript_EndKantoStarter
+	end
+
+RustboroCity_DevonCorp_3F_EventScript_EndKantoStarter::
 	closemessage
 	applymovement VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection
 	waitmovement 0
@@ -303,4 +366,32 @@ RustboroCity_DevonCorp_3F_Text_RepeatAndTimerHugelyPopular:
 RustboroCity_DevonCorp_3F_Text_RareRocksDisplay:
 	.string "It's a collection of rare rocks and\n"
 	.string "stones assembled by the PRESIDENT.$"
+
+@ emerald+: Kanto starter gift text.
+RustboroCity_DevonCorp_3F_Text_OfferKantoStarter:
+	.string "Oh, before you dash off!\p"
+	.string "DEVON does business far beyond HOENN,\n"
+	.string "and a colleague in KANTO sent me these\l"
+	.string "three little ones as a gift.\p"
+	.string "An old man like me hasn't the energy\n"
+	.string "to raise them properly!\p"
+	.string "Go on, take whichever one you fancy.$"
+
+RustboroCity_DevonCorp_3F_Text_ReceivedKantoStarter:
+	.string "{PLAYER} received {STR_VAR_1}!$"
+
+RustboroCity_DevonCorp_3F_Text_KantoStarterSentToPC:
+	.string "Your PARTY's full to bursting, so I've\n"
+	.string "sent it along to your PC.$"
+
+RustboroCity_DevonCorp_3F_Text_NoRoomForKantoStarter:
+	.string "Hmm? You've no room for it at all,\n"
+	.string "not even in your PC BOXES.\p"
+	.string "Come back when you've made space.\n"
+	.string "I'll keep them safe until then.$"
+
+RustboroCity_DevonCorp_3F_Text_DeclineKantoStarter:
+	.string "Not to your taste? No matter.\p"
+	.string "They'll be right here whenever you\n"
+	.string "change your mind.$"
 

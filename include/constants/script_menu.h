@@ -169,6 +169,9 @@ enum
     MULTI_HOF_VICTORIES_QUIT,
     MULTI_EGGS_VICTORIES_QUIT,
     MULTI_HOF_EGGS_VICTORIES_QUIT,
+    // emerald+: starter gift menus. Appended so existing multichoice IDs don't shift.
+    MULTI_KANTO_STARTERS,
+    MULTI_JOHTO_STARTERS,
 };
 
 #define MULTI_NONE 255

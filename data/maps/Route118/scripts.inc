@@ -94,6 +94,7 @@ Route118_EventScript_StevenTrigger::
 	waitmovement 0
 	delay 30
 	msgbox Route118_Text_StevenQuestions, MSGBOX_DEFAULT
+	call Route118_EventScript_OfferJohtoStarter
 	closemessage
 	call_if_eq VAR_0x8008, 0, Route118_EventScript_StevenExit0
 	call_if_eq VAR_0x8008, 1, Route118_EventScript_StevenExit1
@@ -102,6 +103,60 @@ Route118_EventScript_StevenTrigger::
 	removeobject LOCALID_ROUTE118_STEVEN
 	releaseall
 	end
+
+@ emerald+: Steven hands over a Johto starter during his Route 118 scene, which
+@ fires just east of Mauville. He is removeobject'd afterwards, so the menu is
+@ deliberately not cancellable - see sMultichoiceList_JohtoStarters.
+Route118_EventScript_OfferJohtoStarter::
+	goto_if_set FLAG_RECEIVED_JOHTO_STARTER, Route118_EventScript_SkipJohtoStarter
+	message Route118_Text_OfferJohtoStarter
+	waitmessage
+	multichoice 15, 4, MULTI_JOHTO_STARTERS, TRUE
+	switch VAR_RESULT
+	case 0, Route118_EventScript_ChooseChikorita
+	case 1, Route118_EventScript_ChooseCyndaquil
+	case 2, Route118_EventScript_ChooseTotodile
+	return
+
+Route118_EventScript_ChooseChikorita::
+	setvar VAR_TEMP_1, SPECIES_CHIKORITA
+	goto Route118_EventScript_GiveJohtoStarter
+	end
+
+Route118_EventScript_ChooseCyndaquil::
+	setvar VAR_TEMP_1, SPECIES_CYNDAQUIL
+	goto Route118_EventScript_GiveJohtoStarter
+	end
+
+Route118_EventScript_ChooseTotodile::
+	setvar VAR_TEMP_1, SPECIES_TOTODILE
+	goto Route118_EventScript_GiveJohtoStarter
+	end
+
+Route118_EventScript_GiveJohtoStarter::
+	bufferspeciesname STR_VAR_1, VAR_TEMP_1
+	givemon VAR_TEMP_1, 5
+	goto_if_eq VAR_RESULT, MON_CANT_GIVE, Route118_EventScript_NoRoomForJohtoStarter
+	setflag FLAG_RECEIVED_JOHTO_STARTER
+	playfanfare MUS_OBTAIN_ITEM
+	message Route118_Text_ReceivedJohtoStarter
+	waitmessage
+	waitfanfare
+	goto_if_eq VAR_RESULT, MON_GIVEN_TO_PC, Route118_EventScript_JohtoStarterToPC
+	return
+
+Route118_EventScript_JohtoStarterToPC::
+	msgbox Route118_Text_JohtoStarterSentToPC, MSGBOX_DEFAULT
+	return
+
+@ Requires a full party AND all PC boxes full, which is not reachable this early.
+@ Message and continue rather than looping, so this can never soft-lock the scene.
+Route118_EventScript_NoRoomForJohtoStarter::
+	msgbox Route118_Text_NoRoomForJohtoStarter, MSGBOX_DEFAULT
+	return
+
+Route118_EventScript_SkipJohtoStarter::
+	return
 
 Route118_EventScript_StevenExit0::
 	applymovement LOCALID_PLAYER, Route118_Movement_PlayerWatchStevenExit
@@ -260,6 +315,28 @@ Route118_Text_StevenQuestions:
 	.string "Of course, it's not any of my business.\p"
 	.string "It would be nice if we were to meet\n"
 	.string "again somewhere.$"
+
+@ emerald+: Johto starter gift text.
+Route118_Text_OfferJohtoStarter:
+	.string "STEVEN: Ah - that reminds me.\p"
+	.string "A friend in JOHTO entrusted these to me\n"
+	.string "on my travels.\p"
+	.string "POKéMON you'd never find in HOENN.\n"
+	.string "It seemed a shame to keep them hidden.\p"
+	.string "Since you're seeing this wide world for\n"
+	.string "yourself... which one calls to you?$"
+
+Route118_Text_ReceivedJohtoStarter:
+	.string "{PLAYER} received {STR_VAR_1}!$"
+
+Route118_Text_JohtoStarterSentToPC:
+	.string "STEVEN: Your PARTY looked rather full,\n"
+	.string "so I've sent it on to your PC.$"
+
+Route118_Text_NoRoomForJohtoStarter:
+	.string "STEVEN: You've no space anywhere for\n"
+	.string "it, I'm afraid.\p"
+	.string "A shame - I can't carry them forever.$"
 
 Route118_Text_YouAgreeGoodRodIsGood:
 	.string "Hmm!\n"

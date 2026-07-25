@@ -907,6 +907,22 @@ static const struct MenuAction sMultichoiceList_SeagallopVermilion[] = {
 
 const u8 sText_NoThanks[] = _("NO THANKS");
 
+// emerald+: starter gift menus (Mr. Stone in Devon Corp, Steven on Route 118).
+static const struct MenuAction sMultichoiceList_KantoStarters[] = {
+    {COMPOUND_STRING("BULBASAUR")},
+    {COMPOUND_STRING("CHARMANDER")},
+    {COMPOUND_STRING("SQUIRTLE")},
+    {gText_Exit}
+};
+
+// No Exit entry, and Steven's multichoice ignores B: he leaves the map for good
+// after this scene, so a cancellable menu would mean permanently missing the gift.
+static const struct MenuAction sMultichoiceList_JohtoStarters[] = {
+    {COMPOUND_STRING("CHIKORITA")},
+    {COMPOUND_STRING("CYNDAQUIL")},
+    {COMPOUND_STRING("TOTODILE")}
+};
+
 static const struct MenuAction sMultichoiceList_GameCornerPokemonPrizes[] = {
 #if defined(FIRERED)
     {COMPOUND_STRING("ABRA{CLEAR_TO 85}{FONT_SMALL} 180 COINS")},
@@ -1277,6 +1293,8 @@ static const struct MultichoiceListStruct sMultichoiceLists[] =
     [MULTI_THIRSTY_GIRL_FRESH_WATER_LEMONADE]          = MULTICHOICE(sMultichoiceList_ThirstyGirlFreshWaterLemonade),
     [MULTI_THIRSTY_GIRL_SODA_POP_LEMONADE]             = MULTICHOICE(sMultichoiceList_ThirstyGirlSodaPopLemonade),
     [MULTI_THIRSTY_GIRL_FRESH_WATER_SODA_POP_LEMONADE] = MULTICHOICE(sMultichoiceList_ThirstyGirlFreshWaterSodaPopLemonade),
+    [MULTI_KANTO_STARTERS]                             = MULTICHOICE(sMultichoiceList_KantoStarters),
+    [MULTI_JOHTO_STARTERS]                             = MULTICHOICE(sMultichoiceList_JohtoStarters),
     [MULTI_ROCKET_HIDEOUT_ELEVATOR]                    = MULTICHOICE(sMultichoiceList_RocketHideoutElevator),
     [MULTI_HELIX]                                      = MULTICHOICE(sMultichoiceList_Helix),
     [MULTI_DOME]                                       = MULTICHOICE(sMultichoiceList_Dome),

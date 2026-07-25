@@ -51,8 +51,8 @@
 
 #else
 
-#define FLAG_UNUSED_0x020    0x20 // Unused Flag
-#define FLAG_UNUSED_0x021    0x21 // Unused Flag
+#define FLAG_RECEIVED_KANTO_STARTER  0x20 // emerald+: Mr. Stone's Kanto starter gift
+#define FLAG_RECEIVED_JOHTO_STARTER  0x21 // emerald+: Steven's Johto starter gift
 #define FLAG_UNUSED_0x022    0x22 // Unused Flag
 #define FLAG_UNUSED_0x023    0x23 // Unused Flag
 #define FLAG_UNUSED_0x024    0x24 // Unused Flag

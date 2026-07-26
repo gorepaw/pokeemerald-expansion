@@ -16877,3 +16877,230 @@ Double Battle: No
 Kyogre
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+
+=== TRAINER_JOHTO_FALKNER ===
+Name: FALKNER
+Class: Bird Keeper Frlg
+Pic: Bird Keeper Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability
+
+Pidgeot
+Level: 58
+
+Noctowl
+Level: 58
+
+Skarmory
+Level: 59
+
+=== TRAINER_JOHTO_BUGSY ===
+Name: BUGSY
+Class: Bug Catcher Frlg
+Pic: Bug Catcher Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability
+
+Scyther
+Level: 58
+
+Pinsir
+Level: 58
+
+Heracross
+Level: 59
+
+=== TRAINER_JOHTO_WHITNEY ===
+Name: WHITNEY
+Class: Picnicker Frlg
+Pic: Picnicker Frlg
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability
+
+Clefable
+Level: 59
+
+Girafarig
+Level: 59
+
+Miltank
+Level: 60
+
+=== TRAINER_JOHTO_MORTY ===
+Name: MORTY
+Class: Channeler Frlg
+Pic: Channeler Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability
+
+Haunter
+Level: 60
+
+Misdreavus
+Level: 60
+
+Gengar
+Level: 61
+
+=== TRAINER_JOHTO_CHUCK ===
+Name: CHUCK
+Class: Black Belt Frlg
+Pic: Black Belt Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability
+
+Primeape
+Level: 61
+
+Machamp
+Level: 61
+
+Poliwrath
+Level: 62
+
+=== TRAINER_JOHTO_JASMINE ===
+Name: JASMINE
+Class: Cooltrainer Frlg
+Pic: Cooltrainer F Frlg
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability
+
+Magneton
+Level: 62
+
+Forretress
+Level: 62
+
+Steelix
+Level: 63
+
+=== TRAINER_JOHTO_PRYCE ===
+Name: PRYCE
+Class: Gentleman Frlg
+Pic: Gentleman Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability
+
+Dewgong
+Level: 63
+
+Cloyster
+Level: 63
+
+Piloswine
+Level: 64
+
+=== TRAINER_JOHTO_CLAIR ===
+Name: CLAIR
+Class: Dragon Tamer
+Pic: Dragon Tamer
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability
+
+Dragonair
+Level: 64
+
+Gyarados
+Level: 64
+
+Kingdra
+Level: 65
+
+=== TRAINER_JOHTO_WILL ===
+Name: WILL
+Class: Elite Four Frlg
+Pic: Psychic M Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability
+
+Jynx
+Level: 66
+
+Slowbro
+Level: 66
+
+Xatu
+Level: 67
+
+=== TRAINER_JOHTO_KAREN ===
+Name: KAREN
+Class: Elite Four Frlg
+Pic: Cooltrainer F Frlg
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability
+
+Murkrow
+Level: 67
+
+Houndoom
+Level: 67
+
+Umbreon
+Level: 68
+
+=== TRAINER_JOHTO_JANINE ===
+Name: JANINE
+Class: Elite Four Frlg
+Pic: Ninja Boy
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability
+
+Ariados
+Level: 66
+
+Venomoth
+Level: 66
+
+Crobat
+Level: 67
+
+=== TRAINER_JOHTO_RED ===
+Name: RED
+Class: Champion Frlg
+Pic: Red
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability
+
+Espeon
+Level: 75
+
+Snorlax
+Level: 75
+
+Venusaur
+Level: 75
+
+Charizard
+Level: 75
+
+Blastoise
+Level: 75
+
+Pikachu
+Level: 76
+

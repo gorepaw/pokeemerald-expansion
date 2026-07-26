@@ -233,6 +233,11 @@ const struct Trainer gTrainers[DIFFICULTY_COUNT][TRAINERS_COUNT] =
 #include "data/trainers_frlg.h"
 #else
 #include "data/trainers.h"
+// emerald+: Kanto trainers too, so the FRLG gym leaders and Elite Four actually
+// have teams. Safe because they are re-based above Emerald's range; the only
+// shared index is TRAINER_NONE (0), where both tables write the same empty
+// placeholder, so that one override is silenced deliberately.
+#include "data/trainers_frlg.h"
 #endif
 };
 #endif

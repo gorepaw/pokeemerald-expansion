@@ -864,6 +864,24 @@
 //       More space can be made by shifting flags around in constants/flags.h or changing how trainer flags are handled
 //       MAX_TRAINERS_COUNT can be increased but will take up additional saveblock space
 
+
+// emerald+: Johto-side trainers for the Kanto double battles.
+// Placed above the re-based FRLG block (which ends at
+// TRAINERS_COUNT_EMERALD + TRAINERS_COUNT_FRLG - 1).
+#define EMERALD_PLUS_TRAINER_BASE (TRAINERS_COUNT_EMERALD + TRAINERS_COUNT_FRLG)
+#define TRAINER_JOHTO_FALKNER    (EMERALD_PLUS_TRAINER_BASE + 0)
+#define TRAINER_JOHTO_BUGSY      (EMERALD_PLUS_TRAINER_BASE + 1)
+#define TRAINER_JOHTO_WHITNEY    (EMERALD_PLUS_TRAINER_BASE + 2)
+#define TRAINER_JOHTO_MORTY      (EMERALD_PLUS_TRAINER_BASE + 3)
+#define TRAINER_JOHTO_CHUCK      (EMERALD_PLUS_TRAINER_BASE + 4)
+#define TRAINER_JOHTO_JASMINE    (EMERALD_PLUS_TRAINER_BASE + 5)
+#define TRAINER_JOHTO_PRYCE      (EMERALD_PLUS_TRAINER_BASE + 6)
+#define TRAINER_JOHTO_CLAIR      (EMERALD_PLUS_TRAINER_BASE + 7)
+#define TRAINER_JOHTO_WILL       (EMERALD_PLUS_TRAINER_BASE + 8)
+#define TRAINER_JOHTO_KAREN      (EMERALD_PLUS_TRAINER_BASE + 9)
+#define TRAINER_JOHTO_JANINE     (EMERALD_PLUS_TRAINER_BASE + 10)
+#define TRAINER_JOHTO_RED        (EMERALD_PLUS_TRAINER_BASE + 11)
+
 #define TRAINERS_COUNT_EMERALD     855
 // emerald+: raised from 864 to make room for the FRLG trainers, which are
 // re-based to (TRAINERS_COUNT_EMERALD + n) = 856..1478 in opponents_frlg.h so
@@ -876,7 +894,9 @@
 #define TRAINERS_COUNT                      TRAINERS_COUNT_FRLG
 #define MAX_TRAINERS_COUNT                  MAX_TRAINERS_COUNT_FRLG
 #else
-#define TRAINERS_COUNT                      TRAINERS_COUNT_EMERALD
+// emerald+: the array must span Emerald's trainers, the re-based FRLG block and
+// the Johto additions, so it is sized by the ceiling rather than Emerald's count.
+#define TRAINERS_COUNT                      MAX_TRAINERS_COUNT_EMERALD
 #define MAX_TRAINERS_COUNT                  MAX_TRAINERS_COUNT_EMERALD
 #endif
 #define TRAINER_PARTNER(partner)           (MAX_TRAINERS_COUNT + partner)

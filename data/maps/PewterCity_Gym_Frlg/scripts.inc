@@ -1,9 +1,21 @@
 PewterCity_Gym_Frlg_MapScripts::
 	.byte 0
 
+@ emerald+: Brock fights alongside his Johto counterpart Falkner as a double
+@ battle. trainerbattle_two_trainers has no post-battle script slot, so the
+@ badge award is reached by falling through to DefeatedBrock instead.
 PewterCity_Gym_EventScript_Brock::
 	famechecker FAMECHECKER_BROCK, FCPICKSTATE_COLORED, UpdatePickStateFromSpecialVar8005
-	trainerbattle_single TRAINER_LEADER_BROCK, PewterCity_Gym_Text_BrockIntro, PewterCity_Gym_Text_BrockDefeat, PewterCity_Gym_EventScript_DefeatedBrock, NO_MUSIC
+	lock
+	faceplayer
+	goto_if_set FLAG_DEFEATED_BROCK, PewterCity_Gym_EventScript_BrockAfterBattle
+	msgbox PewterCity_Gym_Text_BrockIntro, MSGBOX_DEFAULT
+	closemessage
+	trainerbattle_two_trainers TRAINER_LEADER_BROCK, PewterCity_Gym_Text_BrockDefeat, TRAINER_JOHTO_FALKNER, PewterCity_Gym_Text_FalknerDefeat
+	goto PewterCity_Gym_EventScript_DefeatedBrock
+	end
+
+PewterCity_Gym_EventScript_BrockAfterBattle::
 	goto_if_unset FLAG_GOT_TM39_FROM_BROCK, PewterCity_Gym_EventScript_GiveTM39
 	msgbox PewterCity_Gym_Text_BrockPostBattle
 	release
@@ -200,3 +212,6 @@ PewterCity_Gym_Text_GymStatuePlayerWon::
 	.string "WINNING TRAINERS:\n"
 	.string "{RIVAL}, {PLAYER}$"
 
+PewterCity_Gym_Text_FalknerDefeat:
+	.string "FALKNER: Flying-types alone weren't\n"
+	.string "enough, even with rock at my side!$"

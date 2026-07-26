@@ -59,14 +59,21 @@
                                         // Set by the Kanto Hall of Fame, not at new game.
 #define FLAG_ORAS_DOWSING_ACTIVE   0x25 // emerald+: RUNTIME STATE, not an enable switch. The dowsing
                                         // code sets/clears this itself; it must start CLEAR.
-#define FLAG_UNUSED_0x026    0x26 // Unused Flag
-#define FLAG_UNUSED_0x027    0x27 // Unused Flag
-#define FLAG_UNUSED_0x028    0x28 // Unused Flag
-#define FLAG_UNUSED_0x029    0x29 // Unused Flag
-#define FLAG_UNUSED_0x02A    0x2A // Unused Flag
-#define FLAG_UNUSED_0x02B    0x2B // Unused Flag
-#define FLAG_UNUSED_0x02C    0x2C // Unused Flag
-#define FLAG_UNUSED_0x02D    0x2D // Unused Flag
+// emerald+: Kanto's eight badges, separate from Hoenn's.
+// Upstream FRLG reuses FLAG_BADGE01_GET..08 for both regions, which in a merged
+// build means the Hoenn badges satisfy every Kanto badge check - Route 23's
+// guards wave the player through and the Viridian Gym unlocks itself.
+// These flags are deliberately NOT wired into obedience, level caps, the badge
+// count or the trainer card (src/battle_util.c, caps.c, menu.c, tv.c); those
+// stay Hoenn-only, and the player already holds all eight by the time Kanto opens.
+#define FLAG_KANTO_BADGE01_GET  0x26 // Boulder  (Brock,     Pewter)
+#define FLAG_KANTO_BADGE02_GET  0x27 // Cascade  (Misty,     Cerulean)
+#define FLAG_KANTO_BADGE03_GET  0x28 // Thunder  (Lt. Surge, Vermilion)
+#define FLAG_KANTO_BADGE04_GET  0x29 // Rainbow  (Erika,     Celadon)
+#define FLAG_KANTO_BADGE05_GET  0x2A // Soul     (Koga,      Fuchsia)
+#define FLAG_KANTO_BADGE06_GET  0x2B // Marsh    (Sabrina,   Saffron)
+#define FLAG_KANTO_BADGE07_GET  0x2C // Volcano  (Blaine,    Cinnabar)
+#define FLAG_KANTO_BADGE08_GET  0x2D // Earth    (Giovanni,  Viridian)
 #define FLAG_UNUSED_0x02E    0x2E // Unused Flag
 #define FLAG_UNUSED_0x02F    0x2F // Unused Flag
 #define FLAG_UNUSED_0x030    0x30 // Unused Flag

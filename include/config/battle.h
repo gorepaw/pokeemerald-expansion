@@ -66,7 +66,10 @@
 #define B_UPDATED_MOVE_DATA         GEN_LATEST // Updates move data in gMovesInfo, including Power, Accuracy, PP, stat changes, targets and chances of secondary effects.
 #define B_UPDATED_MOVE_TYPES        GEN_LATEST // Updates move types.
 #define B_UPDATED_MOVE_FLAGS        GEN_LATEST // Updates move flags.
-#define B_PHYSICAL_SPECIAL_SPLIT    GEN_LATEST // In Gens1-3, the move's type determines if it will do physical or special damage. The split icon in the summary will reflect this.
+#define B_PHYSICAL_SPECIAL_SPLIT    GEN_3      // emerald+: no split. Damage class is by TYPE, as in Gen 1-3.
+                                               // Physical: Normal Fighting Flying Ground Rock Bug Ghost Poison Steel
+                                               // Special:  Fire Water Grass Electric Psychic Ice Dragon Dark (+ Fairy)
+                                               // The split icon in the summary reflects this automatically.
 #define B_RECOIL_IF_MISS_DMG        GEN_LATEST // In Gen5+, Jump Kick and High Jump Kick will always do half of the user's max HP when missing.
 #define B_KLUTZ_FLING_INTERACTION   GEN_LATEST // In Gen5+, Pokémon with the Klutz ability can't use Fling.
 #define B_UPDATED_CONVERSION        GEN_LATEST // In Gen6+, Conversion changes the user's type to match their first move's. Before, it would choose a move at random.

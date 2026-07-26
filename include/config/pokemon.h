@@ -11,7 +11,10 @@
 #define P_UPDATED_EXP_YIELDS        GEN_LATEST  // Since Gen 5, some Pokémon have received base Experience changes.
 
 // Learnsets
-#define P_LVL_UP_LEARNSETS          GEN_LATEST  // Choose which set of Level Up Learnsets to use.
+// emerald+: RSE learnsets. Gen 1-3 species get their authentic vanilla movepools
+// (the starting point we want to hand-edit from); species introduced later fall back
+// to their debut generation's data per the rule described below.
+#define P_LVL_UP_LEARNSETS          GEN_3       // Choose which set of Level Up Learnsets to use.
                                                 // For generations that hadn't introduced a species yet, we use their first appearence (eg. Chikorita's Gen2 data if the config is set to GEN_1).
                                                 // For generations that don't include a previously introduced species, we use their last apperance (eg. Snivy's Gen7 data if the config is set to GEN_8).
                                                 // GEN_1/2/3/4/5/6/7: Yellow, Crystal, RSE, HGSS, B2W2, ORAS, USUM learnsets respectively.

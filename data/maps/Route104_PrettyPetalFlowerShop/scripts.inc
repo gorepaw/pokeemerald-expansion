@@ -16,22 +16,77 @@ Route104_PrettyPetalFlowerShop_EventScript_MoveShopOwner::
 Route104_PrettyPetalFlowerShop_EventScript_ShopOwner::
 	lock
 	faceplayer
-	goto_if_set FLAG_TEMP_1, Route104_PrettyPetalFlowerShop_EventScript_SellDecorations
+	goto_if_set FLAG_TEMP_1, Route104_PrettyPetalFlowerShop_EventScript_AskBerriesOrDecorations
 	msgbox Route104_PrettyPetalFlowerShop_Text_ThisIsPrettyPetalFlowerShop, MSGBOX_DEFAULT
 	goto_if_set FLAG_MET_PRETTY_PETAL_SHOP_OWNER, Route104_PrettyPetalFlowerShop_EventScript_AlreadyMet
 	setflag FLAG_MET_PRETTY_PETAL_SHOP_OWNER
 	msgbox Route104_PrettyPetalFlowerShop_Text_IntroLearnAboutBerries, MSGBOX_YESNO
 	call_if_eq VAR_RESULT, YES, Route104_PrettyPetalFlowerShop_EventScript_ExplainBerries
 	call_if_eq VAR_RESULT, NO, Route104_PrettyPetalFlowerShop_EventScript_DontExplainBerries
-	release
+	goto Route104_PrettyPetalFlowerShop_EventScript_OfferBerries
 	end
 
 Route104_PrettyPetalFlowerShop_EventScript_AlreadyMet::
 	msgbox Route104_PrettyPetalFlowerShop_Text_LearnAboutBerries, MSGBOX_YESNO
 	call_if_eq VAR_RESULT, YES, Route104_PrettyPetalFlowerShop_EventScript_ExplainBerries
 	call_if_eq VAR_RESULT, NO, Route104_PrettyPetalFlowerShop_EventScript_DontExplainBerries
+	goto Route104_PrettyPetalFlowerShop_EventScript_OfferBerries
+	end
+
+@ emerald+: the flower shop is the berry vendor. Berries are on sale from the
+@ player's very first visit - it sits just past Petalburg Woods, which is early
+@ enough to seed the berry-mutation system rather than waiting on scattered soil.
+@ The stock covers all five FIRST-TIER parent pairs in sBerryMutations (berry.c):
+@ CHESTO+PERSIM, ORAN+PECHA, ASPEAR+LEPPA, AGUAV+FIGY and IAPAPA+MAGO, which
+@ yield KELPSY, QUALOT, HONDEW, GREPA and POMEG. Plus CHERI and RAWST as the two
+@ remaining common status cures.
+@ The table has 14 rows in total; the later tiers need the type-resist berries
+@ (YACHE, TANGA, ROSELI, KASIB, WACAN) as second parents, and those are
+@ deliberately NOT sold here - they have to be found.
+@
+@ Vanilla only let this NPC sell decorative plants, and only after the Dynamo
+@ Badge (FLAG_TEMP_1, set on transition from FLAG_BADGE03_GET). That shop is
+@ preserved - once it opens she asks which of the two you want.
+Route104_PrettyPetalFlowerShop_EventScript_AskBerriesOrDecorations::
+	msgbox Route104_PrettyPetalFlowerShop_Text_BerriesOrDecorations, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, Route104_PrettyPetalFlowerShop_EventScript_SellDecorations
+	goto Route104_PrettyPetalFlowerShop_EventScript_SellBerries
+	end
+
+Route104_PrettyPetalFlowerShop_EventScript_OfferBerries::
+	msgbox Route104_PrettyPetalFlowerShop_Text_WouldYouLikeBerries, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, Route104_PrettyPetalFlowerShop_EventScript_NoBerrySale
+	goto Route104_PrettyPetalFlowerShop_EventScript_SellBerries
+	end
+
+Route104_PrettyPetalFlowerShop_EventScript_NoBerrySale::
+	msgbox Route104_PrettyPetalFlowerShop_Text_ComeBackForBerries, MSGBOX_DEFAULT
 	release
 	end
+
+Route104_PrettyPetalFlowerShop_EventScript_SellBerries::
+	message gText_PlayerWhatCanIDoForYou
+	waitmessage
+	pokemart Route104_PrettyPetalFlowerShop_Pokemart_Berries
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+	release
+	end
+
+	.align 2
+Route104_PrettyPetalFlowerShop_Pokemart_Berries:
+	.2byte ITEM_CHERI_BERRY
+	.2byte ITEM_CHESTO_BERRY
+	.2byte ITEM_PECHA_BERRY
+	.2byte ITEM_RAWST_BERRY
+	.2byte ITEM_ASPEAR_BERRY
+	.2byte ITEM_LEPPA_BERRY
+	.2byte ITEM_ORAN_BERRY
+	.2byte ITEM_PERSIM_BERRY
+	.2byte ITEM_FIGY_BERRY
+	.2byte ITEM_AGUAV_BERRY
+	.2byte ITEM_IAPAPA_BERRY
+	.2byte ITEM_MAGO_BERRY
+	pokemartlistend
 
 Route104_PrettyPetalFlowerShop_EventScript_ExplainBerries::
 	msgbox Route104_PrettyPetalFlowerShop_Text_BerriesExplanation, MSGBOX_DEFAULT

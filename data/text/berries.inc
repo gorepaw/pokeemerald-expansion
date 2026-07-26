@@ -168,6 +168,23 @@ Route104_PrettyPetalFlowerShop_Text_FlowersBringHappiness:
 	.string "Flowers bring so much happiness to\n"
 	.string "people, don't they?$"
 
+@ emerald+: the flower shop sells BERRIES.
+Route104_PrettyPetalFlowerShop_Text_WouldYouLikeBerries:
+	.string "Oh! We do sell BERRY seedlings, too.\p"
+	.string "Would you care to see what we have\n"
+	.string "in stock?$"
+
+Route104_PrettyPetalFlowerShop_Text_BerriesOrDecorations:
+	.string "Welcome back!\p"
+	.string "Are you shopping for BERRIES today?\p"
+	.string "Say no and I'll show you our\n"
+	.string "decorative plants instead.$"
+
+Route104_PrettyPetalFlowerShop_Text_ComeBackForBerries:
+	.string "Do come back if you take up\n"
+	.string "growing them. Some pairs even\l"
+	.string "sprout something unexpected!$"
+
 Route104_PrettyPetalFlowerShop_Text_YouCanHaveThis:
 	.string "Hello!\p"
 	.string "The more attention you give to flowers,\n"

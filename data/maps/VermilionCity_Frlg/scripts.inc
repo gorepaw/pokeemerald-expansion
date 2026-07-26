@@ -49,10 +49,32 @@ VermilionCity_EventScript_OldMan1SSAnneLeft::
 VermilionCity_EventScript_FerrySailor::
 	lock
 	faceplayer
+#if !IS_FRLG
+	@ emerald+: offer the crossing back to Hoenn. Only reachable postgame, which
+	@ is also the only way the player can be standing in Kanto at all.
+	goto_if_set FLAG_SYS_GAME_CLEAR, VermilionCity_EventScript_OfferReturnToHoenn
+#endif
 	goto_if_eq VAR_MAP_SCENE_VERMILION_CITY, 3, VermilionCity_EventScript_CheckSeagallopPresent
 	msgbox VermilionCity_Text_WelcomeToTheSSAnne
 	release
 	end
+
+#if !IS_FRLG
+@ emerald+: return crossing to Lilycove Harbor.
+VermilionCity_EventScript_OfferReturnToHoenn::
+	msgbox VermilionCity_Text_ReturnToHoenn, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, VermilionCity_EventScript_DeclineReturnToHoenn
+	closemessage
+	warp MAP_LILYCOVE_CITY_HARBOR, 12, 13
+	waitstate
+	release
+	end
+
+VermilionCity_EventScript_DeclineReturnToHoenn::
+	msgbox VermilionCity_Text_StayInKanto, MSGBOX_DEFAULT
+	release
+	end
+#endif
 
 VermilionCity_EventScript_CheckHasMysticTicket::
 	goto_if_unset FLAG_ENABLE_SHIP_NAVEL_ROCK, EventScript_SetResultFalse
@@ -394,3 +416,16 @@ VermilionCity_Text_Route2AideHasPackageForYou::
 	.string "If you're in the ROUTE 2 area,\n"
 	.string "please look for him.$"
 
+#if !IS_FRLG
+@ emerald+
+VermilionCity_Text_ReturnToHoenn:
+	.string "Back across to HOENN, is it?\p"
+	.string "I can take you straight to LILYCOVE\n"
+	.string "HARBOR whenever you're ready.\p"
+	.string "Shall we set sail?$"
+
+VermilionCity_Text_StayInKanto:
+	.string "Staying a while longer? Good!\p"
+	.string "KANTO's worth taking your time over.\n"
+	.string "I'll be right here when you're done.$"
+#endif

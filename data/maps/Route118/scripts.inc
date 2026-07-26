@@ -135,7 +135,14 @@ Route118_EventScript_ChooseTotodile::
 
 Route118_EventScript_GiveJohtoStarter::
 	bufferspeciesname STR_VAR_1, VAR_TEMP_1
-	givemon VAR_TEMP_1, 5
+@ emerald+: level 20, not 5. Route 118's wild encounters are level 24-27 and the
+@ player arrives around there, so a level 5 gift cannot safely battle anything on
+@ the route it is given on. Unlike Mr. Stone's Kanto starter - handed over in the
+@ same breath as the Exp Share, which is its catch-up mechanism - this gift has
+@ nothing paired with it, and the EXP curve was made considerably slower after
+@ this script was written (split among participants, /7 divisor, no catch EXP).
+@ 20 leaves it a few levels behind the party so it still takes investment.
+	givemon VAR_TEMP_1, 20
 	goto_if_eq VAR_RESULT, MON_CANT_GIVE, Route118_EventScript_NoRoomForJohtoStarter
 	setflag FLAG_RECEIVED_JOHTO_STARTER
 	playfanfare MUS_OBTAIN_ITEM

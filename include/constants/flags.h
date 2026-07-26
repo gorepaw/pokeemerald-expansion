@@ -55,7 +55,8 @@
 #define FLAG_RECEIVED_JOHTO_STARTER  0x21 // emerald+: Steven's Johto starter gift
 #define FLAG_EGG_MOVE_RELEARNER    0x22 // emerald+: enables the egg-move relearner category
 #define FLAG_TUTOR_MOVE_RELEARNER  0x23 // emerald+: enables the tutor-move relearner category
-#define FLAG_POKE_RIDER            0x24 // emerald+: Fly straight from the region map with R
+#define FLAG_POKE_RIDER            0x24 // emerald+: Fly straight from the region map with R.
+                                        // Set by the Kanto Hall of Fame, not at new game.
 #define FLAG_ORAS_DOWSING_ACTIVE   0x25 // emerald+: RUNTIME STATE, not an enable switch. The dowsing
                                         // code sets/clears this itself; it must start CLEAR.
 #define FLAG_UNUSED_0x026    0x26 // Unused Flag

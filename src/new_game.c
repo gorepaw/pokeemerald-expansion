@@ -237,10 +237,12 @@ void NewGameInitData(void)
 
     // emerald+: features gated behind a flag that we want on from the start.
     // Must come after InitEventData(), which clears every flag.
-    // FLAG_ORAS_DOWSING_ACTIVE is deliberately NOT set here - it is runtime state.
+    // NOT set here, deliberately:
+    //   FLAG_ORAS_DOWSING_ACTIVE - runtime state, owned by oras_dowse.c
+    //   FLAG_POKE_RIDER          - earned by clearing the Kanto league; set in
+    //                              PokemonLeague_HallOfFame_Frlg/scripts.inc
     FlagSet(FLAG_EGG_MOVE_RELEARNER);
     FlagSet(FLAG_TUTOR_MOVE_RELEARNER);
-    FlagSet(FLAG_POKE_RIDER);
 }
 
 static void ResetMiniGamesRecords(void)

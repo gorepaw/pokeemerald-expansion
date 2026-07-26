@@ -25,6 +25,7 @@ PokemonLeague_HallOfFame_EventScript_EnterRoom::
 	waitmovement 0
 	delay 18
 	msgbox PokemonLeague_HallOfFame_Text_OakCongratulations
+	msgbox PokemonLeague_HallOfFame_Text_OakPokeRider
 	closemessage
 	applymovement LOCALID_HALL_OF_FAME_PROF_OAK, Common_Movement_WalkInPlaceFasterUp
 	applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterUp
@@ -35,6 +36,11 @@ PokemonLeague_HallOfFame_EventScript_EnterRoom::
 	delay 40
 	setvar VAR_TEMP_1, 1
 	call EventScript_SetDefeatedEliteFourFlagsVars
+@ emerald+: Fly-from-region-map is the reward for clearing the Kanto league.
+@ Deliberately placed here rather than in the Champion's Room, because the
+@ Champion battle script will be rewritten when Blue+Red becomes a double
+@ battle. Do not drop this line during that conversion.
+	setflag FLAG_POKE_RIDER
 	setrespawn HEAL_LOCATION_PALLET_TOWN
 	fadescreenspeed FADE_TO_BLACK, 24
 	special EnterHallOfFame
@@ -52,6 +58,16 @@ PokemonLeague_HallOfFame_Movement_EnterRoom::
 	walk_up
 	walk_up
 	step_end
+
+@ emerald+: tells the player Fly-from-region-map has unlocked. Without this the
+@ feature is invisible until they happen to press R on the map.
+PokemonLeague_HallOfFame_Text_OakPokeRider::
+	.string "OAK: One last thing, {PLAYER}.\p"
+	.string "A CHAMPION should not have to walk\n"
+	.string "the same roads twice.\p"
+	.string "Open your TOWN MAP and press R over\n"
+	.string "any town you have already visited.\p"
+	.string "Your team will carry you there!$"
 
 PokemonLeague_HallOfFame_Text_OakCongratulations::
 	.string "OAK: Er-hem!\n"

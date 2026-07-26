@@ -3,7 +3,16 @@ ViridianCity_Gym_Frlg_MapScripts::
 
 ViridianCity_Gym_EventScript_Giovanni::
 	famechecker FAMECHECKER_GIOVANNI, FCPICKSTATE_COLORED, UpdatePickStateFromSpecialVar8005
-	trainerbattle_single TRAINER_LEADER_GIOVANNI, ViridianCity_Gym_Text_GiovanniIntro, ViridianCity_Gym_Text_GiovanniDefeat, ViridianCity_Gym_EventScript_DefeatedGiovanni, NO_MUSIC
+	lock
+	faceplayer
+	goto_if_set FLAG_DEFEATED_LEADER_GIOVANNI, ViridianCity_Gym_EventScript_Giovanni_AfterBattle
+	msgbox ViridianCity_Gym_Text_GiovanniIntro, MSGBOX_DEFAULT
+	closemessage
+	trainerbattle_two_trainers TRAINER_LEADER_GIOVANNI, ViridianCity_Gym_Text_GiovanniDefeat, TRAINER_JOHTO_CLAIR, ViridianCity_Gym_Text_ClairDefeat
+	goto ViridianCity_Gym_EventScript_DefeatedGiovanni
+	end
+
+ViridianCity_Gym_EventScript_Giovanni_AfterBattle::
 	goto_if_unset FLAG_GOT_TM26_FROM_GIOVANNI, ViridianCity_Gym_EventScript_GiveTM26
 	msgbox ViridianCity_Gym_Text_GiovanniPostBattle
 	closemessage
@@ -275,3 +284,5 @@ ViridianCity_Gym_Text_GymStatuePlayerWon::
 	.string "WINNING TRAINERS:\n"
 	.string "{RIVAL}, {PLAYER}$"
 
+ViridianCity_Gym_Text_ClairDefeat:
+	.string "CLAIR: Ground and dragon, beaten together?\nYou have real skill. I admit it.$"

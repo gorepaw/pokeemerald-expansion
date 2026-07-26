@@ -3,7 +3,16 @@ FuchsiaCity_Gym_Frlg_MapScripts::
 
 FuchsiaCity_Gym_EventScript_Koga::
 	famechecker FAMECHECKER_KOGA, FCPICKSTATE_COLORED, UpdatePickStateFromSpecialVar8005
-	trainerbattle_single TRAINER_LEADER_KOGA, FuchsiaCity_Gym_Text_KogaIntro, FuchsiaCity_Gym_Text_KogaDefeat, FuchsiaCity_Gym_EventScript_DefeatedKoga, NO_MUSIC
+	lock
+	faceplayer
+	goto_if_set FLAG_DEFEATED_KOGA, FuchsiaCity_Gym_EventScript_Koga_AfterBattle
+	msgbox FuchsiaCity_Gym_Text_KogaIntro, MSGBOX_DEFAULT
+	closemessage
+	trainerbattle_two_trainers TRAINER_LEADER_KOGA, FuchsiaCity_Gym_Text_KogaDefeat, TRAINER_JOHTO_JANINE, FuchsiaCity_Gym_Text_JanineDefeat
+	goto FuchsiaCity_Gym_EventScript_DefeatedKoga
+	end
+
+FuchsiaCity_Gym_EventScript_Koga_AfterBattle::
 	goto_if_unset FLAG_GOT_TM06_FROM_KOGA, FuchsiaCity_Gym_EventScript_GiveTM06
 	msgbox FuchsiaCity_Gym_Text_KogaPostBattle
 	release
@@ -245,3 +254,5 @@ FuchsiaCity_Gym_Text_GymStatuePlayerWon::
 	.string "WINNING TRAINERS:\n"
 	.string "{RIVAL}, {PLAYER}$"
 
+FuchsiaCity_Gym_Text_JanineDefeat:
+	.string "JANINE: Father and I fought as one, and\nyou beat us both. Impressive!$"

@@ -203,7 +203,16 @@ VermilionCity_Gym_EventScript_SetBeamsOn::
 
 VermilionCity_Gym_EventScript_LtSurge::
 	famechecker FAMECHECKER_LTSURGE, FCPICKSTATE_COLORED, UpdatePickStateFromSpecialVar8005
-	trainerbattle_single TRAINER_LEADER_LT_SURGE, VermilionCity_Gym_Text_LtSurgeIntro, VermilionCity_Gym_Text_LtSurgeDefeat, VermilionCity_Gym_EventScript_DefeatedLtSurge, NO_MUSIC
+	lock
+	faceplayer
+	goto_if_set FLAG_DEFEATED_LT_SURGE, VermilionCity_Gym_EventScript_LtSurge_AfterBattle
+	msgbox VermilionCity_Gym_Text_LtSurgeIntro, MSGBOX_DEFAULT
+	closemessage
+	trainerbattle_two_trainers TRAINER_LEADER_LT_SURGE, VermilionCity_Gym_Text_LtSurgeDefeat, TRAINER_JOHTO_WHITNEY, VermilionCity_Gym_Text_WhitneyDefeat
+	goto VermilionCity_Gym_EventScript_DefeatedLtSurge
+	end
+
+VermilionCity_Gym_EventScript_LtSurge_AfterBattle::
 	goto_if_unset FLAG_GOT_TM34_FROM_SURGE, VermilionCity_Gym_EventScript_GiveTM34
 	msgbox VermilionCity_Gym_Text_LtSurgePostBattle
 	release
@@ -419,3 +428,5 @@ VermilionCity_Gym_Text_OnlyTrashLocksWereReset::
 	.string "Hey!\n"
 	.string "The electric locks were reset!$"
 
+VermilionCity_Gym_Text_WhitneyDefeat:
+	.string "WHITNEY: Waaaah! We had you outnumbered\nand you STILL won!$"

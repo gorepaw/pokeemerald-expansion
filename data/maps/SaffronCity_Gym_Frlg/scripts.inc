@@ -3,7 +3,16 @@ SaffronCity_Gym_Frlg_MapScripts::
 
 SaffronCity_Gym_EventScript_Sabrina::
 	famechecker FAMECHECKER_SABRINA, FCPICKSTATE_COLORED, UpdatePickStateFromSpecialVar8005
-	trainerbattle_single TRAINER_LEADER_SABRINA, SaffronCity_Gym_Text_SabrinaIntro, SaffronCity_Gym_Text_SabrinaDefeat, SaffronCity_Gym_EventScript_DefeatedSabrina, NO_MUSIC
+	lock
+	faceplayer
+	goto_if_set FLAG_DEFEATED_SABRINA, SaffronCity_Gym_EventScript_Sabrina_AfterBattle
+	msgbox SaffronCity_Gym_Text_SabrinaIntro, MSGBOX_DEFAULT
+	closemessage
+	trainerbattle_two_trainers TRAINER_LEADER_SABRINA, SaffronCity_Gym_Text_SabrinaDefeat, TRAINER_JOHTO_JASMINE, SaffronCity_Gym_Text_JasmineDefeat
+	goto SaffronCity_Gym_EventScript_DefeatedSabrina
+	end
+
+SaffronCity_Gym_EventScript_Sabrina_AfterBattle::
 	goto_if_unset FLAG_GOT_TM04_FROM_SABRINA, SaffronCity_Gym_EventScript_GiveTM04
 	msgbox SaffronCity_Gym_Text_ExplainTM04
 	release
@@ -255,3 +264,5 @@ SaffronCity_Gym_Text_GymStatuePlayerWon::
 	.string "WINNING TRAINERS:\n"
 	.string "{RIVAL}, {PLAYER}$"
 
+SaffronCity_Gym_Text_JasmineDefeat:
+	.string "JASMINE: Steel and psychic power together...\nand still you found a way through.$"

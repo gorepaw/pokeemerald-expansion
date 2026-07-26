@@ -47,7 +47,16 @@ CinnabarIsland_Gym_OnLoadOpenDoor6::
 
 CinnabarIsland_Gym_EventScript_Blaine::
 	famechecker FAMECHECKER_BLAINE, FCPICKSTATE_COLORED, UpdatePickStateFromSpecialVar8005
-	trainerbattle_single TRAINER_LEADER_BLAINE, CinnabarIsland_Gym_Text_BlaineIntro, CinnabarIsland_Gym_Text_BlaineDefeat, CinnabarIsland_Gym_EventScript_DefeatedBlaine, NO_MUSIC
+	lock
+	faceplayer
+	goto_if_set FLAG_DEFEATED_BLAINE, CinnabarIsland_Gym_EventScript_Blaine_AfterBattle
+	msgbox CinnabarIsland_Gym_Text_BlaineIntro, MSGBOX_DEFAULT
+	closemessage
+	trainerbattle_two_trainers TRAINER_LEADER_BLAINE, CinnabarIsland_Gym_Text_BlaineDefeat, TRAINER_JOHTO_PRYCE, CinnabarIsland_Gym_Text_PryceDefeat
+	goto CinnabarIsland_Gym_EventScript_DefeatedBlaine
+	end
+
+CinnabarIsland_Gym_EventScript_Blaine_AfterBattle::
 	goto_if_unset FLAG_GOT_TM38_FROM_BLAINE, CinnabarIsland_Gym_EventScript_GiveTM38
 	msgbox CinnabarIsland_Gym_Text_BlainePostBattle
 	release
@@ -899,3 +908,5 @@ CinnabarIsland_Gym_Text_SorryBadCall::
 	.string "Sorry!\n"
 	.string "Bad call!$"
 
+CinnabarIsland_Gym_Text_PryceDefeat:
+	.string "PRYCE: Fire and ice at your back at once.\nAge has taught me to know defeat.$"

@@ -2462,7 +2462,7 @@ void ShowScrollableMultichoice(void)
         break;
     case SCROLL_MULTI_SS_TIDAL_DESTINATION:
         task->tMaxItemsOnScreen = MAX_SCROLL_MULTI_ON_SCREEN;
-        task->tNumItems = 7;
+        task->tNumItems = 8; // emerald+: +VERMILION CITY
         task->tLeft = 19;
         task->tTop = 1;
         task->tWidth = 10;
@@ -2651,6 +2651,7 @@ static const u8 *const sScrollableMultichoiceOptions[][MAX_SCROLL_MULTI_LENGTH] 
         gText_NavelRock,
         gText_BirthIsland,
         gText_FarawayIsland,
+        gText_VermilionCity,
         gText_Exit
     },
     [SCROLL_MULTI_BATTLE_TENT_RULES] =

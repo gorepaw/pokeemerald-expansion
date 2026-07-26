@@ -183,8 +183,9 @@ enum
 #define SSTIDAL_SELECTION_NAVEL_ROCK       3
 #define SSTIDAL_SELECTION_BIRTH_ISLAND     4
 #define SSTIDAL_SELECTION_FARAWAY_ISLAND   5
-#define SSTIDAL_SELECTION_EXIT             6
-#define SSTIDAL_SELECTION_COUNT            7
+#define SSTIDAL_SELECTION_VERMILION        6 // emerald+: Kanto postgame
+#define SSTIDAL_SELECTION_EXIT             7
+#define SSTIDAL_SELECTION_COUNT            8
 
 // Std String Ids
 #define STDSTRING_COOL             0

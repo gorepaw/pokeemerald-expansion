@@ -816,6 +816,11 @@ static void CreateLilycoveSSTidalMultichoice(void)
             sLilycoveSSTidalSelections[selectionCount] = SSTIDAL_SELECTION_BATTLE_FRONTIER;
             selectionCount++;
         }
+
+        // emerald+: Kanto postgame. The attendant already requires
+        // FLAG_SYS_GAME_CLEAR, so reaching this menu is gate enough.
+        sLilycoveSSTidalSelections[selectionCount] = SSTIDAL_SELECTION_VERMILION;
+        selectionCount++;
     }
 
     if (CheckBagHasItem(ITEM_EON_TICKET, 1) == TRUE && FlagGet(FLAG_ENABLE_SHIP_SOUTHERN_ISLAND) == TRUE)
@@ -891,7 +896,10 @@ static void CreateLilycoveSSTidalMultichoice(void)
     }
 
     count = selectionCount;
-    if (count == SSTIDAL_SELECTION_COUNT)
+    // emerald+: the fixed window positions itself at (6 - count) * 2, so it can
+    // only show 6 entries before the origin goes negative. Vanilla sat exactly on
+    // that boundary; adding a destination means testing the limit, not the total.
+    if (count > 6)
     {
         gSpecialVar_0x8004 = SCROLL_MULTI_SS_TIDAL_DESTINATION;
         ShowScrollableMultichoice();

@@ -497,6 +497,7 @@ const u8 gText_SouthernIsland[] = _("SOUTHERN ISLAND");
 const u8 gText_BirthIsland[] = _("BIRTH ISLAND");
 const u8 gText_FarawayIsland[] = _("FARAWAY ISLAND");
 const u8 gText_NavelRock[] = _("NAVEL ROCK");
+const u8 gText_VermilionCity[] = _("VERMILION CITY"); // emerald+
 const u8 gText_NormalTagMatch[] = _("NORMAL TAG MATCH");
 const u8 gText_VarietyTagMatch[] = _("VARIETY TAG MATCH");
 const u8 gText_UniqueTagMatch[] = _("UNIQUE TAG MATCH");

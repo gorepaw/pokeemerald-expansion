@@ -429,6 +429,7 @@ extern const u8 gText_ExchangeService[];
 
 extern const u8 gText_SlateportCity[];
 extern const u8 gText_BattleFrontier[];
+extern const u8 gText_VermilionCity[]; // emerald+
 extern const u8 gText_SouthernIsland[];
 extern const u8 gText_NavelRock[];
 extern const u8 gText_BirthIsland[];

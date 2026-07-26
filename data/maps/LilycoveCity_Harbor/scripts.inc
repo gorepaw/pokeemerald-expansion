@@ -45,7 +45,8 @@ LilycoveCity_Harbor_EventScript_FerryRegularLocationSelect::
 	case 3, LilycoveCity_Harbor_EventScript_GoToNavelRock
 	case 4, LilycoveCity_Harbor_EventScript_GoToBirthIsland
 	case 5, LilycoveCity_Harbor_EventScript_GoToFarawayIsland
-	case 6, LilycoveCity_Harbor_EventScript_ExitSailSelect
+	case 6, LilycoveCity_Harbor_EventScript_GoToVermilion
+	case 7, LilycoveCity_Harbor_EventScript_ExitSailSelect
 	case MULTI_B_PRESSED, LilycoveCity_Harbor_EventScript_ExitSailSelect
 	end
 
@@ -83,6 +84,17 @@ LilycoveCity_Harbor_EventScript_GoToSlateport::
 	setvar VAR_SS_TIDAL_STATE, SS_TIDAL_BOARD_LILYCOVE
 	call LilycoveCity_Harbor_EventScript_BoardFerry
 	warp MAP_SS_TIDAL_CORRIDOR, 1, 10
+	waitstate
+	release
+	end
+
+@ emerald+: ferry to Kanto. The attendant above already requires
+@ FLAG_SYS_GAME_CLEAR, so this is postgame-only without a new flag.
+LilycoveCity_Harbor_EventScript_GoToVermilion::
+	msgbox LilycoveCity_Harbor_Text_VermilionItIs, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, LilycoveCity_Harbor_EventScript_FerryDestinationChangeMind
+	call LilycoveCity_Harbor_EventScript_BoardFerry
+	warp MAP_VERMILION_CITY, 23, 33
 	waitstate
 	release
 	end
@@ -583,3 +595,10 @@ LilycoveCity_Harbor_Text_SailorFerryAvailable:
 	.string "The folks at the SHIPYARD in SLATEPORT\n"
 	.string "must've worked extra hard.\p"
 	.string "Well, it's my turn to get busy now!$"
+
+@ emerald+
+LilycoveCity_Harbor_Text_VermilionItIs:
+	.string "VERMILION CITY in KANTO, is it?\p"
+	.string "That's a long crossing - a whole other\n"
+	.string "region across the sea.\p"
+	.string "Are you sure you want to go?$"

@@ -12,10 +12,10 @@
 
 // Experience settings
 #define B_EXP_CATCH                 GEN_3      // emerald+: no EXP for catching.
-#define B_TRAINER_EXP_MULTIPLIER    GEN_LATEST // In Gen7+, trainer battles no longer give a 1.5 multiplier to EXP gain.
+#define B_TRAINER_EXP_MULTIPLIER    GEN_3      // emerald+: trainer battles give the vanilla 1.5x EXP bonus again.
 #define B_SPLIT_EXP                 GEN_3      // emerald+: EXP is split among participants, not full to each.
 #define B_SCALED_EXP                GEN_3      // emerald+: flat EXP, not weighted by level difference.
-#define B_UNEVOLVED_EXP_MULTIPLIER  GEN_LATEST // In Gen6+, if the Pokémon is at or past the level where it would be able to evolve, but it has not, it gets a ~1.2 multiplier to EXP gain. Only applies to Pokémon with EVO_LEVEL method.
+#define B_UNEVOLVED_EXP_MULTIPLIER  GEN_3      // emerald+: no Gen 6 1.2x bonus for unevolved mons past their evo level.
 #define B_LEVEL_UP_NOTIFICATION     GEN_LATEST // In Gen9+, if the Pokémon gets enough experience to level up multiple times, the message is only displayed once.
 
 // Stat settings
@@ -341,9 +341,12 @@
 #define B_INCAPACITATED_CATCH_BONUS     GEN_LATEST // In Gen5+, the catch rate bonus for a mon with sleep or freeze is 2.5x. In Gen4 and below its only a 2x bonus.
 #define B_LOW_LEVEL_CATCH_BONUS         GEN_LATEST // In Gen8, a bonus is added to the catch rate if catching a mon lower than level 20. In Gen9, the bonus is only applied to mons lower than level 13.
 #define B_MISSING_BADGE_CATCH_MALUS     GEN_LATEST // In Gen9, a penalty is added to the catch rate if trying to catch a mon 5 levels above the current obedience level, based on the number of gym badges obtained.
-#define B_CRITICAL_CAPTURE              TRUE       // If set to TRUE, Critical Capture will be enabled.
-#define B_CRITICAL_CAPTURE_LOCAL_DEX    TRUE       // If set to FALSE, Critical Capture % is based off of the National Pokedex estimated by enabled generations.
-#define B_CRITICAL_CAPTURE_IF_OWNED     GEN_LATEST // In Gen9, a capture appear critical if the Pokémon you are trying to catch already has a dex entry (has already been caught)
+#define B_CRITICAL_CAPTURE              FALSE      // emerald+: no Critical Capture (a Gen 5 addition).
+#define B_CRITICAL_CAPTURE_LOCAL_DEX    TRUE       // Moot while B_CRITICAL_CAPTURE is FALSE.
+#define B_CRITICAL_CAPTURE_IF_OWNED     GEN_3      // emerald+: must also be < GEN_9. This is an INDEPENDENT branch in
+                                                   // FinalizeCapture that never checks B_CRITICAL_CAPTURE, so leaving it
+                                                   // at GEN_LATEST would still play the one-shake critical animation on
+                                                   // every catch of an already-owned species.
 
 #define B_LAST_USED_BALL            TRUE       // If TRUE, the "last used ball" feature from Gen 7 will be implemented
 #define B_LAST_USED_BALL_BUTTON     R_BUTTON   // If last used ball is implemented, this button (or button combo) will trigger throwing the last used ball.

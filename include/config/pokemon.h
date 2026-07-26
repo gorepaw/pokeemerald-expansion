@@ -55,7 +55,11 @@
 // Other settings
 #define P_CRIES_ENABLED                  TRUE        // If TRUE, Pokémon will have cries. Disabling this saves around a LOT of ROM space (over 25%!), but instead we recommend disabling individual unused Pokémon families in include/config/species_enabled.h.
 #define P_LEGENDARY_PERFECT_IVS          GEN_LATEST  // Since Gen 6, Legendaries, Mythicals and Ultra Beasts found in the wild or given through gifts have at least 3 perfect IVs.
-#define P_ALL_PERFECT_IVS                TRUE        // If TRUE, EVERY Pokémon is generated with 31 IVs in all stats - player and enemy trainers alike. Makes breeding purely about natures/abilities/shinies. Note: this makes Hyper Training, the IV judge and Destiny Knot inheritance meaningless, and slightly buffs enemy trainers.
+#define P_ALL_PERFECT_IVS                TRUE        // If TRUE, EVERY Pokémon is generated with maxed IVs - player and enemy trainers alike. Makes breeding purely about natures/abilities/shinies. Note: this makes Hyper Training, the IV judge and Destiny Knot inheritance meaningless, and slightly buffs enemy trainers.
+#define P_PERFECT_IVS_VARY_FOR_HIDDEN_POWER TRUE     // Requires P_ALL_PERFECT_IVS. If TRUE, each IV is 30 or 31 at random instead of a flat 31.
+                                                     // Hidden Power's type comes from bit 0 of the six IVs, so a flat 31 spread pins every Hidden Power
+                                                     // to one type (Dark). Varying bit 0 restores all 16 types for at most 1 IV point per stat.
+                                                     // The type is random per Pokémon and cannot be bred for - eggs use this same code path.
 #define P_EV_CAP                         GEN_LATEST  // Since Gen 6, the max EVs per stat is 252 instead of 255.
 #define P_SHOW_TERA_TYPE                 GEN_8       // Since Gen 9, the Tera Type is shown on the summary screen.
 #define P_TM_LITERACY                    GEN_LATEST  // Since Gen 6, TM illiterate Pokémon can learn TMs that teach moves that are in their level-up learnsets.
@@ -64,7 +68,9 @@
 #define P_EGG_CYCLE_LENGTH               GEN_LATEST  // Since Gen 8, Egg cycles take half as many steps as before. Previous generations have some varied step counts around 255.
 #define P_ONLY_OBTAINABLE_SHINIES        FALSE       // If TRUE, Pokémon encountered in the Battle Pyramid or while catching is disabled won't be Shiny.
 #define P_NO_SHINIES_WITHOUT_POKEBALLS   FALSE       // If TRUE, Pokémon encountered when the player is out of Poké Balls won't be Shiny.
-#define P_SHOW_DYNAMIC_TYPES             FALSE       // If TRUE, all moves with dynamic type changes will be reflected as their current type in battle/summary screens instead of just select ones like in vanilla.
+#define P_SHOW_DYNAMIC_TYPES             TRUE        // emerald+: needed so Hidden Power shows its real type rather than Normal. Without this,
+                                                     // P_PERFECT_IVS_VARY_FOR_HIDDEN_POWER gives you a random invisible type, which is worse
+                                                     // than a predictable one. Also affects Weather Ball, Judgment, etc.
 #define P_BASE_HP_1_SHEDINJA_HANDLING    FALSE       // If TRUE, all species with 1 Base HP will have their handling match Shedinja's.
 
 // Learnset helper toggles

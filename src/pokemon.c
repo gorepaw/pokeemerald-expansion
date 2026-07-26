@@ -904,11 +904,28 @@ void SetBoxMonIVs(struct BoxPokemon *mon, u8 fixedIV)
     u32 i, value;
 
 #if P_ALL_PERFECT_IVS
-    // Every Pokemon gets 31s in all stats, however it was generated. This is the
-    // single choke point for IV generation: wild encounters, gifts, eggs, static
+    // Every Pokemon gets maxed IVs, however it was generated. This is the single
+    // choke point for IV generation: wild encounters, gifts, eggs, static
     // legendaries, enemy trainers and Frontier facility mons all route through
     // here, including via the fixedIV path below.
+#if P_PERFECT_IVS_VARY_FOR_HIDDEN_POWER
+    // Each IV is 30 or 31 rather than a flat 31. Hidden Power's type is derived
+    // from bit 0 of the six IVs (battle_main.c), so an all-31 spread pins every
+    // Hidden Power to a single type. Letting bit 0 vary makes all 16 types
+    // reachable again, at a cost of at most one IV point per stat - one stat
+    // point at level 100, less below.
+    {
+        u32 ivBits = Random32();
+
+        for (i = 0; i < NUM_STATS; i++)
+        {
+            u32 iv = MAX_PER_STAT_IVS - ((ivBits >> i) & 1);
+            SetBoxMonData(mon, MON_DATA_HP_IV + i, &iv);
+        }
+    }
+#else
     SetBoxMonPerfectIVs(mon, NUM_STATS);
+#endif
     return;
 #endif
 

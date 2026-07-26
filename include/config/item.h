@@ -41,7 +41,13 @@
 #define I_SHOW_NO_ID_TRAINER        DISABLED_ON_RELEASE   // If TRUE, object events with a trainer type but no visible trainer id will be shown with a question mark. You may want to add vsseeker_rematchid TRAINER_ID as the top of the script to let the VS seeker know what reaction it's supposed to show.
 
 // ORAS Dowsing Machine
-#define I_ORAS_DOWSING_FLAG         0           // Replace 0 with an unused flag to enable the Dowsing Machine mechanic from ORAS.
+// emerald+: ORAS Dowsing Machine replaces the vanilla Itemfinder ping. Same hidden
+// items either way (both go through ItemfinderCheckForHiddenItems); the difference
+// is continuous directional + proximity feedback instead of a single yes/no.
+// NOTE: this flag is runtime STATE, not an enable switch - the feature is enabled by
+// this being non-zero, and the code sets/clears the flag as you enter/leave dowsing.
+// Running is disabled while dowsing is active (field_player_avatar.c:913).
+#define I_ORAS_DOWSING_FLAG         FLAG_ORAS_DOWSING_ACTIVE
 #define I_ORAS_DOWSING_SOUNDS       TRUE        // If TRUE, the Dowsing Machine will make sounds based on how far away the hidden item is.
 #define I_ORAS_DOWSING_COLOR_PAL    15          // The color within the palette that will change based on proximity to the item.
 // Color values for the ORAS dowsing distances/anims

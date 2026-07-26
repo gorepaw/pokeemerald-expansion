@@ -234,6 +234,13 @@ void NewGameInitData(void)
     ResetItemFlags();
     ResetDexNav();
     ClearFollowerNPCData();
+
+    // emerald+: features gated behind a flag that we want on from the start.
+    // Must come after InitEventData(), which clears every flag.
+    // FLAG_ORAS_DOWSING_ACTIVE is deliberately NOT set here - it is runtime state.
+    FlagSet(FLAG_EGG_MOVE_RELEARNER);
+    FlagSet(FLAG_TUTOR_MOVE_RELEARNER);
+    FlagSet(FLAG_POKE_RIDER);
 }
 
 static void ResetMiniGamesRecords(void)

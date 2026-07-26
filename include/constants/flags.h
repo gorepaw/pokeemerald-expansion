@@ -53,10 +53,11 @@
 
 #define FLAG_RECEIVED_KANTO_STARTER  0x20 // emerald+: Mr. Stone's Kanto starter gift
 #define FLAG_RECEIVED_JOHTO_STARTER  0x21 // emerald+: Steven's Johto starter gift
-#define FLAG_UNUSED_0x022    0x22 // Unused Flag
-#define FLAG_UNUSED_0x023    0x23 // Unused Flag
-#define FLAG_UNUSED_0x024    0x24 // Unused Flag
-#define FLAG_UNUSED_0x025    0x25 // Unused Flag
+#define FLAG_EGG_MOVE_RELEARNER    0x22 // emerald+: enables the egg-move relearner category
+#define FLAG_TUTOR_MOVE_RELEARNER  0x23 // emerald+: enables the tutor-move relearner category
+#define FLAG_POKE_RIDER            0x24 // emerald+: Fly straight from the region map with R
+#define FLAG_ORAS_DOWSING_ACTIVE   0x25 // emerald+: RUNTIME STATE, not an enable switch. The dowsing
+                                        // code sets/clears this itself; it must start CLEAR.
 #define FLAG_UNUSED_0x026    0x26 // Unused Flag
 #define FLAG_UNUSED_0x027    0x27 // Unused Flag
 #define FLAG_UNUSED_0x028    0x28 // Unused Flag

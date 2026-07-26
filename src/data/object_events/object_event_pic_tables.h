@@ -1359,7 +1359,9 @@ static const struct SpriteFrameImage sPicTable_ApricornTree[] = {
     overworld_frame(gObjectEventPic_ApricornTree, 2, 2, 0),
 };
 
-#if IS_FRLG
+// emerald+: FRLG object-event graphics are compiled in Emerald builds too,
+// so Kanto NPCs have graphics info to point at instead of NULL.
+#if 1
 
 static const struct SpriteFrameImage sPicTable_RedNormal[] = {
     overworld_frame(gObjectEventPic_RedNormal, 2, 4, 0),

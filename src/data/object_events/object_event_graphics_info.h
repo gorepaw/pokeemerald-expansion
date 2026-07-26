@@ -4467,7 +4467,9 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_ApricornTree = {
     .images = sPicTable_ApricornTree,
 };
 
-#if IS_FRLG
+// emerald+: FRLG object-event graphics are compiled in Emerald builds too,
+// so Kanto NPCs have graphics info to point at instead of NULL.
+#if 1
 
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RedNormal = {
     .tileTag = TAG_NONE,

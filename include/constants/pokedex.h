@@ -1304,7 +1304,31 @@ enum NationalDexOrder
     F(GROUDON) \
     F(RAYQUAZA) \
     F(JIRACHI) \
-    F(DEOXYS)
+    F(DEOXYS) \
+    /* emerald+: species we made catchable on Hoenn's routes. Appended after
+       DEOXYS rather than slotted in thematically, so no existing Hoenn dex
+       number shifts. HOENN_DEX_COUNT below is moved to HOUNDOOM to match -
+       it is defined off the LAST entry, so appending without updating it
+       silently leaves the new species outside the dex. */ \
+    F(CATERPIE) \
+    F(METAPOD) \
+    F(BUTTERFREE) \
+    F(WEEDLE) \
+    F(KAKUNA) \
+    F(BEEDRILL) \
+    F(RATTATA) \
+    F(RATICATE) \
+    F(PIDGEY) \
+    F(PIDGEOTTO) \
+    F(PIDGEOT) \
+    F(SPEAROW) \
+    F(FEAROW) \
+    F(SENTRET) \
+    F(FURRET) \
+    F(HOOTHOOT) \
+    F(NOCTOWL) \
+    F(HOUNDOUR) \
+    F(HOUNDOOM)
 
 // Hoenn Pokédex order
 enum HoennDexOrder
@@ -1525,7 +1549,7 @@ enum KantoDexOrder
 };
 
 #define KANTO_DEX_COUNT (KANTO_DEX_MEW + 1)
-#define HOENN_DEX_COUNT (HOENN_DEX_DEOXYS + 1)
+#define HOENN_DEX_COUNT (HOENN_DEX_HOUNDOOM + 1) // emerald+: was HOENN_DEX_DEOXYS + 1
 
 #define REGIONAL_DEX_COUNT (IS_FRLG ? KANTO_DEX_COUNT : HOENN_DEX_COUNT)
 

@@ -2743,9 +2743,9 @@
                 "species": "SPECIES_WHISCASH"
               },
               {
-                "min_level": 40,
-                "max_level": 45,
-                "species": "SPECIES_WHISCASH"
+                "min_level": 25,
+                "max_level": 30,
+                "species": "SPECIES_DRATINI"
               }
             ]
           }
@@ -7731,9 +7731,9 @@
                 "species": "SPECIES_BARBOACH"
               },
               {
-                "min_level": 40,
-                "max_level": 45,
-                "species": "SPECIES_BARBOACH"
+                "min_level": 25,
+                "max_level": 30,
+                "species": "SPECIES_DRATINI"
               }
             ]
           }
@@ -7885,9 +7885,9 @@
                 "species": "SPECIES_WHISCASH"
               },
               {
-                "min_level": 40,
-                "max_level": 45,
-                "species": "SPECIES_WHISCASH"
+                "min_level": 25,
+                "max_level": 30,
+                "species": "SPECIES_DRATINI"
               }
             ]
           }
@@ -8039,9 +8039,9 @@
                 "species": "SPECIES_WHISCASH"
               },
               {
-                "min_level": 40,
-                "max_level": 45,
-                "species": "SPECIES_WHISCASH"
+                "min_level": 25,
+                "max_level": 30,
+                "species": "SPECIES_DRATINI"
               }
             ]
           }

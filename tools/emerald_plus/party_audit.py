@@ -42,6 +42,12 @@ DONE = [
     ("RusturfTunnel", "MAP_RUSTURF_TUNNEL"),
     ("Route106", "MAP_ROUTE106"),
     ("DewfordTown_Gym", "MAP_DEWFORD_TOWN_GYM"),
+    # Parties only. The water and rod tables for the whole Slateport approach
+    # are being done later in one pass, since all four maps share one table.
+    ("Route107", "MAP_ROUTE107"),
+    ("Route108", "MAP_ROUTE108"),
+    ("Route109", "MAP_ROUTE109"),
+    ("Route109_SeashoreHouse", "MAP_ROUTE109_SEASHORE_HOUSE"),
 ]
 
 

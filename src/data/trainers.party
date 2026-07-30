@@ -18333,13 +18333,13 @@ Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
 
 Pidgeot
-Level: 58
+Level: 66
 
 Noctowl
-Level: 58
+Level: 66
 
 Skarmory
-Level: 59
+Level: 68
 
 === TRAINER_JOHTO_BUGSY ===
 Name: BUGSY
@@ -18351,13 +18351,13 @@ Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
 
 Scyther
-Level: 58
+Level: 66
 
 Pinsir
-Level: 58
+Level: 66
 
 Heracross
-Level: 59
+Level: 68
 
 === TRAINER_JOHTO_WHITNEY ===
 Name: WHITNEY
@@ -18369,13 +18369,13 @@ Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
 
 Clefable
-Level: 59
+Level: 68
 
 Girafarig
-Level: 59
+Level: 68
 
 Miltank
-Level: 60
+Level: 70
 
 === TRAINER_JOHTO_MORTY ===
 Name: MORTY
@@ -18387,13 +18387,13 @@ Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
 
 Haunter
-Level: 60
+Level: 70
 
 Misdreavus
-Level: 60
+Level: 70
 
 Gengar
-Level: 61
+Level: 71
 
 === TRAINER_JOHTO_CHUCK ===
 Name: CHUCK
@@ -18405,13 +18405,13 @@ Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
 
 Primeape
-Level: 61
+Level: 92
 
 Machamp
-Level: 61
+Level: 92
 
 Poliwrath
-Level: 62
+Level: 94
 
 === TRAINER_JOHTO_JASMINE ===
 Name: JASMINE
@@ -18423,13 +18423,13 @@ Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
 
 Magneton
-Level: 62
+Level: 73
 
 Forretress
-Level: 62
+Level: 73
 
 Steelix
-Level: 63
+Level: 75
 
 === TRAINER_JOHTO_PRYCE ===
 Name: PRYCE
@@ -18441,13 +18441,13 @@ Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
 
 Dewgong
-Level: 63
+Level: 75
 
 Cloyster
-Level: 63
+Level: 75
 
 Piloswine
-Level: 64
+Level: 77
 
 === TRAINER_JOHTO_CLAIR ===
 Name: CLAIR
@@ -18458,14 +18458,14 @@ Music: Female
 Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
 
-Dragonair
-Level: 64
+Dragonite
+Level: 77
 
 Gyarados
-Level: 64
+Level: 77
 
 Kingdra
-Level: 65
+Level: 79
 
 === TRAINER_JOHTO_WILL ===
 Name: WILL
@@ -18477,13 +18477,13 @@ Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
 
 Jynx
-Level: 66
+Level: 90
 
 Slowbro
-Level: 66
+Level: 90
 
 Xatu
-Level: 67
+Level: 90
 
 === TRAINER_JOHTO_KAREN ===
 Name: KAREN
@@ -18495,13 +18495,13 @@ Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
 
 Murkrow
-Level: 67
+Level: 90
 
 Houndoom
-Level: 67
+Level: 92
 
 Umbreon
-Level: 68
+Level: 92
 
 === TRAINER_JOHTO_JANINE ===
 Name: JANINE
@@ -18513,13 +18513,31 @@ Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
 
 Ariados
-Level: 66
+Level: 81
 
 Venomoth
-Level: 66
+Level: 81
 
 Crobat
-Level: 67
+Level: 83
+
+=== TRAINER_JOHTO_KOGA ===
+Name: KOGA
+Class: Elite Four Frlg
+Pic: Ninja Boy
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability
+
+Forretress
+Level: 90
+
+Muk
+Level: 92
+
+Crobat
+Level: 92
 
 === TRAINER_JOHTO_RED ===
 Name: RED
@@ -18530,21 +18548,12 @@ Music: Male
 Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
 
-Espeon
-Level: 75
-
-Snorlax
-Level: 75
-
-Venusaur
-Level: 75
-
 Charizard
-Level: 75
+Level: 94
 
 Blastoise
-Level: 75
+Level: 94
 
 Pikachu
-Level: 76
+Level: 96
 

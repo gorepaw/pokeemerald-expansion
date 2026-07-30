@@ -67,12 +67,17 @@ PokemonLeague_BrunosRoom_EventScript_RematchIntro::
 	msgbox PokemonLeague_BrunosRoom_Text_RematchIntro
 	return
 
+@ emerald+: this room is a double battle - the Kanto league member
+@ fights alongside their Johto counterpart, 3 Pokemon each.
+@ trainerbattle_two_trainers has no post-battle script slot; the
+@ post-battle work is reached by returning from this call, exactly as
+@ it was before the conversion.
 PokemonLeague_BrunosRoom_EventScript_Battle::
-	trainerbattle_no_intro TRAINER_ELITE_FOUR_BRUNO, PokemonLeague_BrunosRoom_Text_Defeat
+	trainerbattle_two_trainers TRAINER_ELITE_FOUR_BRUNO, PokemonLeague_BrunosRoom_Text_Defeat, TRAINER_JOHTO_KAREN, PokemonLeague_BrunosRoom_Text_KarenDefeat
 	return
 
 PokemonLeague_BrunosRoom_EventScript_Rematch::
-	trainerbattle_no_intro TRAINER_ELITE_FOUR_BRUNO_2, PokemonLeague_BrunosRoom_Text_Defeat
+	trainerbattle_two_trainers TRAINER_ELITE_FOUR_BRUNO_2, PokemonLeague_BrunosRoom_Text_Defeat, TRAINER_JOHTO_KAREN, PokemonLeague_BrunosRoom_Text_KarenDefeat
 	return
 
 PokemonLeague_BrunosRoom_EventScript_PostBattle::
@@ -137,6 +142,10 @@ PokemonLeague_BrunosRoom_Text_RematchIntro::
 	.string "We will grind you down with our\n"
 	.string "superior power!\p"
 	.string "Hoo hah!{PLAY_BGM}{MUS_RG_ENCOUNTER_GYM_LEADER}$"
+
+PokemonLeague_BrunosRoom_Text_KarenDefeat::
+	.string "Strong POKeMON. Weak POKeMON.\n"
+	.string "That is only the selfish perception.$"
 
 PokemonLeague_BrunosRoom_Text_Defeat::
 	.string "Why?\n"

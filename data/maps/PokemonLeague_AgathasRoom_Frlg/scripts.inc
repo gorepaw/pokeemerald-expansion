@@ -68,12 +68,17 @@ PokemonLeague_AgathasRoom_EventScript_RematchIntro::
 	msgbox PokemonLeague_AgathasRoom_Text_RematchIntro
 	return
 
+@ emerald+: this room is a double battle - the Kanto league member
+@ fights alongside their Johto counterpart, 3 Pokemon each.
+@ trainerbattle_two_trainers has no post-battle script slot; the
+@ post-battle work is reached by returning from this call, exactly as
+@ it was before the conversion.
 PokemonLeague_AgathasRoom_EventScript_Battle::
-	trainerbattle_no_intro TRAINER_ELITE_FOUR_AGATHA, PokemonLeague_AgathasRoom_Text_Defeat
+	trainerbattle_two_trainers TRAINER_ELITE_FOUR_AGATHA, PokemonLeague_AgathasRoom_Text_Defeat, TRAINER_JOHTO_KOGA, PokemonLeague_AgathasRoom_Text_KogaDefeat
 	return
 
 PokemonLeague_AgathasRoom_EventScript_Rematch::
-	trainerbattle_no_intro TRAINER_ELITE_FOUR_AGATHA_2, PokemonLeague_AgathasRoom_Text_Defeat
+	trainerbattle_two_trainers TRAINER_ELITE_FOUR_AGATHA_2, PokemonLeague_AgathasRoom_Text_Defeat, TRAINER_JOHTO_KOGA, PokemonLeague_AgathasRoom_Text_KogaDefeat
 	return
 
 PokemonLeague_AgathasRoom_EventScript_PostBattle::
@@ -117,6 +122,10 @@ PokemonLeague_AgathasRoom_Text_RematchIntro::
 	.string "POKéMON are for battling!\p"
 	.string "{PLAYER}! I'll show you how a real\n"
 	.string "TRAINER battles!{PLAY_BGM}{MUS_RG_ENCOUNTER_GYM_LEADER}$"
+
+PokemonLeague_AgathasRoom_Text_KogaDefeat::
+	.string "Ah! You have bested my poisons.\n"
+	.string "A ninja knows when to withdraw.$"
 
 PokemonLeague_AgathasRoom_Text_Defeat::
 	.string "Oh, my!\n"

@@ -119,28 +119,33 @@ PokemonLeague_ChampionsRoom_EventScript_RematchIntro::
 	msgbox PokemonLeague_ChampionsRoom_Text_RematchIntro
 	return
 
+@ emerald+: this room is a double battle - the Kanto league member
+@ fights alongside their Johto counterpart, 3 Pokemon each.
+@ trainerbattle_two_trainers has no post-battle script slot; the
+@ post-battle work is reached by returning from this call, exactly as
+@ it was before the conversion.
 PokemonLeague_ChampionsRoom_EventScript_BattleSquirtle::
-	trainerbattle_no_intro TRAINER_CHAMPION_FIRST_SQUIRTLE, PokemonLeague_ChampionsRoom_Text_Defeat
+	trainerbattle_two_trainers TRAINER_CHAMPION_FIRST_SQUIRTLE, PokemonLeague_ChampionsRoom_Text_Defeat, TRAINER_JOHTO_RED, PokemonLeague_ChampionsRoom_Text_RedDefeat
 	return
 
 PokemonLeague_ChampionsRoom_EventScript_BattleBulbasaur::
-	trainerbattle_no_intro TRAINER_CHAMPION_FIRST_BULBASAUR, PokemonLeague_ChampionsRoom_Text_Defeat
+	trainerbattle_two_trainers TRAINER_CHAMPION_FIRST_BULBASAUR, PokemonLeague_ChampionsRoom_Text_Defeat, TRAINER_JOHTO_RED, PokemonLeague_ChampionsRoom_Text_RedDefeat
 	return
 
 PokemonLeague_ChampionsRoom_EventScript_BattleCharmander::
-	trainerbattle_no_intro TRAINER_CHAMPION_FIRST_CHARMANDER, PokemonLeague_ChampionsRoom_Text_Defeat
+	trainerbattle_two_trainers TRAINER_CHAMPION_FIRST_CHARMANDER, PokemonLeague_ChampionsRoom_Text_Defeat, TRAINER_JOHTO_RED, PokemonLeague_ChampionsRoom_Text_RedDefeat
 	return
 
 PokemonLeague_ChampionsRoom_EventScript_RematchSquirtle::
-	trainerbattle_no_intro TRAINER_CHAMPION_REMATCH_SQUIRTLE, PokemonLeague_ChampionsRoom_Text_Defeat
+	trainerbattle_two_trainers TRAINER_CHAMPION_REMATCH_SQUIRTLE, PokemonLeague_ChampionsRoom_Text_Defeat, TRAINER_JOHTO_RED, PokemonLeague_ChampionsRoom_Text_RedDefeat
 	return
 
 PokemonLeague_ChampionsRoom_EventScript_RematchBulbasaur::
-	trainerbattle_no_intro TRAINER_CHAMPION_REMATCH_BULBASAUR, PokemonLeague_ChampionsRoom_Text_Defeat
+	trainerbattle_two_trainers TRAINER_CHAMPION_REMATCH_BULBASAUR, PokemonLeague_ChampionsRoom_Text_Defeat, TRAINER_JOHTO_RED, PokemonLeague_ChampionsRoom_Text_RedDefeat
 	return
 
 PokemonLeague_ChampionsRoom_EventScript_RematchCharmander::
-	trainerbattle_no_intro TRAINER_CHAMPION_REMATCH_CHARMANDER, PokemonLeague_ChampionsRoom_Text_Defeat
+	trainerbattle_two_trainers TRAINER_CHAMPION_REMATCH_CHARMANDER, PokemonLeague_ChampionsRoom_Text_Defeat, TRAINER_JOHTO_RED, PokemonLeague_ChampionsRoom_Text_RedDefeat
 	return
 
 PokemonLeague_ChampionsRoom_Movement_PlayerEnter::
@@ -259,6 +264,9 @@ PokemonLeague_ChampionsRoom_Text_RematchIntro::
 	.string "I'll tell you.\p"
 	.string "I am the most powerful TRAINER in\n"
 	.string "the world!$"
+
+PokemonLeague_ChampionsRoom_Text_RedDefeat::
+	.string "...!$"
 
 PokemonLeague_ChampionsRoom_Text_Defeat::
 	.string "NO!\n"

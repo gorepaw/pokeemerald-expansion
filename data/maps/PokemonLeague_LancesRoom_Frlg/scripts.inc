@@ -121,12 +121,17 @@ PokemonLeague_LancesRoom_EventScript_RematchIntro::
 	msgbox PokemonLeague_LancesRoom_Text_RematchIntro
 	return
 
+@ emerald+: this room is a double battle - the Kanto league member
+@ fights alongside their Johto counterpart, 3 Pokemon each.
+@ trainerbattle_two_trainers has no post-battle script slot; the
+@ post-battle work is reached by returning from this call, exactly as
+@ it was before the conversion.
 PokemonLeague_LancesRoom_EventScript_Battle::
-	trainerbattle_no_intro TRAINER_ELITE_FOUR_LANCE, PokemonLeague_LancesRoom_Text_Defeat
+	trainerbattle_two_trainers TRAINER_ELITE_FOUR_LANCE, PokemonLeague_LancesRoom_Text_Defeat, TRAINER_JOHTO_CHUCK, PokemonLeague_LancesRoom_Text_ChuckDefeat
 	return
 
 PokemonLeague_LancesRoom_EventScript_Rematch::
-	trainerbattle_no_intro TRAINER_ELITE_FOUR_LANCE_2, PokemonLeague_LancesRoom_Text_Defeat
+	trainerbattle_two_trainers TRAINER_ELITE_FOUR_LANCE_2, PokemonLeague_LancesRoom_Text_Defeat, TRAINER_JOHTO_CHUCK, PokemonLeague_LancesRoom_Text_ChuckDefeat
 	return
 
 PokemonLeague_LancesRoom_EventScript_PostBattle::
@@ -195,6 +200,10 @@ PokemonLeague_LancesRoom_Text_RematchIntro::
 	.string "Well, are you ready to lose?\p"
 	.string "Your LEAGUE challenge ends with\n"
 	.string "me, {PLAYER}!{PLAY_BGM}{MUS_RG_ENCOUNTER_GYM_LEADER}$"
+
+PokemonLeague_LancesRoom_Text_ChuckDefeat::
+	.string "WAHAHAH! What power!\n"
+	.string "My training was not enough!$"
 
 PokemonLeague_LancesRoom_Text_Defeat::
 	.string "That's it!\p"

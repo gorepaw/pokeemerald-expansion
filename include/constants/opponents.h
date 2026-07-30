@@ -881,6 +881,11 @@
 #define TRAINER_JOHTO_KAREN      (EMERALD_PLUS_TRAINER_BASE + 9)
 #define TRAINER_JOHTO_JANINE     (EMERALD_PLUS_TRAINER_BASE + 10)
 #define TRAINER_JOHTO_RED        (EMERALD_PLUS_TRAINER_BASE + 11)
+// Koga is the one person on both sides of the pairing table: Fuchsia's gym
+// leader in Kanto, promoted to the Johto Elite Four in GSC. TRAINER_LEADER_KOGA
+// is the gym fight and cannot also serve the league - one entry means one party
+// at one level. This is his Elite Four self, standing with Agatha.
+#define TRAINER_JOHTO_KOGA       (EMERALD_PLUS_TRAINER_BASE + 12)
 
 #define TRAINERS_COUNT_EMERALD     855
 // emerald+: raised from 864 to make room for the FRLG trainers, which are

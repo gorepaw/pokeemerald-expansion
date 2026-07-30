@@ -1328,7 +1328,17 @@ enum NationalDexOrder
     F(HOOTHOOT) \
     F(NOCTOWL) \
     F(HOUNDOUR) \
-    F(HOUNDOOM)
+    F(HOUNDOOM) \
+    /* Pseudo-legendary lines now obtainable in Hoenn. Beldum's line was already
+       listed above as native. Kanto's dragon line was present only in the KANTO
+       macro further down this file, which is a different list - it did not put
+       them in the Hoenn dex. */ \
+    F(DRATINI) \
+    F(DRAGONAIR) \
+    F(DRAGONITE) \
+    F(LARVITAR) \
+    F(PUPITAR) \
+    F(TYRANITAR)
 
 // Hoenn Pokédex order
 enum HoennDexOrder
@@ -1549,7 +1559,10 @@ enum KantoDexOrder
 };
 
 #define KANTO_DEX_COUNT (KANTO_DEX_MEW + 1)
-#define HOENN_DEX_COUNT (HOENN_DEX_HOUNDOOM + 1) // emerald+: was HOENN_DEX_DEOXYS + 1
+#define HOENN_DEX_COUNT (HOENN_DEX_TYRANITAR + 1) // emerald+: was HOENN_DEX_DEOXYS + 1.
+                                                  // Must track the LAST entry of
+                                                  // FOREACH_SPECIES_IN_HOENN_DEX_ORDER, or appended
+                                                  // species fall silently outside the dex.
 
 #define REGIONAL_DEX_COUNT (IS_FRLG ? KANTO_DEX_COUNT : HOENN_DEX_COUNT)
 

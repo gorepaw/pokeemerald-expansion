@@ -25,7 +25,7 @@ hoenn, kanto = set(), set()
 for g in d["wild_encounter_groups"]:
     for e in g.get("encounters", []):
         lab = e.get("base_label", "")
-        frlg = lab.endswith("_FireRed") or lab.endswith("_LeafGreen")
+        frlg = lab.endswith("_Kanto")
         for k in ("land_mons", "water_mons", "rock_smash_mons", "fishing_mons"):
             for mon in e.get(k, {}).get("mons", []):
                 (kanto if frlg else hoenn).add(mon["species"].replace("SPECIES_", ""))

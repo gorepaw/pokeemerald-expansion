@@ -14,7 +14,7 @@ rows = []
 for g in d["wild_encounter_groups"]:
     for e in g.get("encounters", []):
         lab = e.get("base_label", "")
-        if lab.endswith("_FireRed") or lab.endswith("_LeafGreen"):
+        if lab.endswith("_Kanto"):
             continue
         blk = e.get(kind)
         if not blk:

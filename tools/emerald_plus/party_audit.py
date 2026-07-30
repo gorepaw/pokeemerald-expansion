@@ -77,7 +77,7 @@ def min_wild_level():
             continue
         for e in g.get("encounters", []):
             lab = e.get("base_label", "")
-            if lab.endswith("_FireRed") or lab.endswith("_LeafGreen"):
+            if lab.endswith("_Kanto"):
                 continue
             if "land_mons" in e and e.get("map"):
                 lo = min(m["min_level"] for m in e["land_mons"]["mons"])

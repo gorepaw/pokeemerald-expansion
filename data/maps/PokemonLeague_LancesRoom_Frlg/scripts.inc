@@ -131,7 +131,7 @@ PokemonLeague_LancesRoom_EventScript_Battle::
 	return
 
 PokemonLeague_LancesRoom_EventScript_Rematch::
-	trainerbattle_two_trainers TRAINER_ELITE_FOUR_LANCE_2, PokemonLeague_LancesRoom_Text_Defeat, TRAINER_JOHTO_CHUCK, PokemonLeague_LancesRoom_Text_ChuckDefeat
+	trainerbattle_two_trainers TRAINER_ELITE_FOUR_LANCE_2, PokemonLeague_LancesRoom_Text_Defeat, TRAINER_JOHTO_CHUCK_2, PokemonLeague_LancesRoom_Text_ChuckDefeat
 	return
 
 PokemonLeague_LancesRoom_EventScript_PostBattle::

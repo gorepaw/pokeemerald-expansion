@@ -82,7 +82,7 @@ PokemonLeague_LoreleisRoom_EventScript_Battle::
 	return
 
 PokemonLeague_LoreleisRoom_EventScript_Rematch::
-	trainerbattle_two_trainers TRAINER_ELITE_FOUR_LORELEI_2, PokemonLeague_LoreleisRoom_Text_Defeat, TRAINER_JOHTO_WILL, PokemonLeague_LoreleisRoom_Text_WillDefeat
+	trainerbattle_two_trainers TRAINER_ELITE_FOUR_LORELEI_2, PokemonLeague_LoreleisRoom_Text_Defeat, TRAINER_JOHTO_WILL_2, PokemonLeague_LoreleisRoom_Text_WillDefeat
 	return
 
 PokemonLeague_LoreleisRoom_EventScript_PostBattle::

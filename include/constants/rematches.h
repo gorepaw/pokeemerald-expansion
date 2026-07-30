@@ -75,11 +75,29 @@ enum {
     REMATCH_WINONA,
     REMATCH_TATE_AND_LIZA,
     REMATCH_JUAN,
+    // emerald+: Kanto's gym leaders sit HERE, above SIDNEY, because everything
+    // from SIDNEY down is Elite Four as far as gym_leader_rematch.c,
+    // battle_setup.c, vs_seeker.c and pokenav_match_call_data.c are concerned.
+    // Appending them after WALLACE would have quietly reclassified eight gym
+    // leaders as Elite Four members.
+    REMATCH_KANTO_BROCK,
+    REMATCH_KANTO_MISTY,
+    REMATCH_KANTO_LT_SURGE,
+    REMATCH_KANTO_ERIKA,
+    REMATCH_KANTO_KOGA,
+    REMATCH_KANTO_SABRINA,
+    REMATCH_KANTO_BLAINE,
+    REMATCH_KANTO_GIOVANNI,
     REMATCH_SIDNEY, // Entries from SIDNEY below are considered part of REMATCH_ELITE_FOUR_ENTRIES.
     REMATCH_PHOEBE,
     REMATCH_GLACIA,
     REMATCH_DRAKE,
     REMATCH_WALLACE,
+    // emerald+: Kanto's Elite Four, correctly on this side of the line.
+    REMATCH_KANTO_LORELEI,
+    REMATCH_KANTO_BRUNO,
+    REMATCH_KANTO_AGATHA,
+    REMATCH_KANTO_LANCE,
     REMATCH_TABLE_ENTRIES // The total number of rematch entries. Must be last in enum
 };
 

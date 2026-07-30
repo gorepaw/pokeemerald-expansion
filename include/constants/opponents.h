@@ -886,6 +886,13 @@
 // is the gym fight and cannot also serve the league - one entry means one party
 // at one level. This is his Elite Four self, standing with Agatha.
 #define TRAINER_JOHTO_KOGA       (EMERALD_PLUS_TRAINER_BASE + 12)
+// League rematch selves. Without these the Kanto half of an Elite Four rematch
+// scaled and the Johto half stood still at its first-fight party.
+#define TRAINER_JOHTO_WILL_2     (EMERALD_PLUS_TRAINER_BASE + 13)
+#define TRAINER_JOHTO_KAREN_2    (EMERALD_PLUS_TRAINER_BASE + 14)
+#define TRAINER_JOHTO_KOGA_2     (EMERALD_PLUS_TRAINER_BASE + 15)
+#define TRAINER_JOHTO_CHUCK_2    (EMERALD_PLUS_TRAINER_BASE + 16)
+#define TRAINER_JOHTO_RED_2      (EMERALD_PLUS_TRAINER_BASE + 17)
 
 #define TRAINERS_COUNT_EMERALD     855
 // emerald+: raised from 864 to make room for the FRLG trainers, which are

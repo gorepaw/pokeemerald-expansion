@@ -77,7 +77,7 @@ PokemonLeague_BrunosRoom_EventScript_Battle::
 	return
 
 PokemonLeague_BrunosRoom_EventScript_Rematch::
-	trainerbattle_two_trainers TRAINER_ELITE_FOUR_BRUNO_2, PokemonLeague_BrunosRoom_Text_Defeat, TRAINER_JOHTO_KAREN, PokemonLeague_BrunosRoom_Text_KarenDefeat
+	trainerbattle_two_trainers TRAINER_ELITE_FOUR_BRUNO_2, PokemonLeague_BrunosRoom_Text_Defeat, TRAINER_JOHTO_KAREN_2, PokemonLeague_BrunosRoom_Text_KarenDefeat
 	return
 
 PokemonLeague_BrunosRoom_EventScript_PostBattle::

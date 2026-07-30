@@ -18521,6 +18521,96 @@ Level: 81
 Crobat
 Level: 83
 
+=== TRAINER_JOHTO_WILL_2 ===
+Name: WILL
+Class: Elite Four Frlg
+Pic: Psychic M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability
+
+Jynx
+Level: 98
+
+Slowking
+Level: 98
+
+Xatu
+Level: 98
+
+=== TRAINER_JOHTO_KAREN_2 ===
+Name: KAREN
+Class: Elite Four Frlg
+Pic: Hex Maniac
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability
+
+Houndoom
+Level: 96
+
+Weavile
+Level: 98
+
+Umbreon
+Level: 98
+
+=== TRAINER_JOHTO_KOGA_2 ===
+Name: KOGA
+Class: Elite Four Frlg
+Pic: Ninja Boy
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability
+
+Forretress
+Level: 98
+
+Muk
+Level: 98
+
+Crobat
+Level: 98
+
+=== TRAINER_JOHTO_CHUCK_2 ===
+Name: CHUCK
+Class: Elite Four Frlg
+Pic: Black Belt
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability
+
+Primeape
+Level: 98
+
+Machamp
+Level: 98
+
+Poliwrath
+Level: 98
+
+=== TRAINER_JOHTO_RED_2 ===
+Name: RED
+Class: Champion Frlg
+Pic: Red
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability
+
+Snorlax
+Level: 98
+
+Venusaur
+Level: 98
+
+Pikachu
+Level: 98
+
 === TRAINER_JOHTO_KOGA ===
 Name: KOGA
 Class: Elite Four Frlg

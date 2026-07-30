@@ -78,7 +78,7 @@ PokemonLeague_AgathasRoom_EventScript_Battle::
 	return
 
 PokemonLeague_AgathasRoom_EventScript_Rematch::
-	trainerbattle_two_trainers TRAINER_ELITE_FOUR_AGATHA_2, PokemonLeague_AgathasRoom_Text_Defeat, TRAINER_JOHTO_KOGA, PokemonLeague_AgathasRoom_Text_KogaDefeat
+	trainerbattle_two_trainers TRAINER_ELITE_FOUR_AGATHA_2, PokemonLeague_AgathasRoom_Text_Defeat, TRAINER_JOHTO_KOGA_2, PokemonLeague_AgathasRoom_Text_KogaDefeat
 	return
 
 PokemonLeague_AgathasRoom_EventScript_PostBattle::

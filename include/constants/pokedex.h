@@ -1338,7 +1338,159 @@ enum NationalDexOrder
     F(DRAGONITE) \
     F(LARVITAR) \
     F(PUPITAR) \
-    F(TYRANITAR)
+    F(TYRANITAR) \
+    /* emerald+: everything else made catchable in Hoenn by the
+       Gen 1-3 availability pass. National order, appended so no
+       existing Hoenn number shifts. HOENN_DEX_COUNT tracks the
+       LAST entry below - keep them in step. */ \
+    F(BULBASAUR) \
+    F(IVYSAUR) \
+    F(VENUSAUR) \
+    F(CHARMANDER) \
+    F(CHARMELEON) \
+    F(CHARIZARD) \
+    F(SQUIRTLE) \
+    F(WARTORTLE) \
+    F(BLASTOISE) \
+    F(EKANS) \
+    F(ARBOK) \
+    F(NIDORAN_F) \
+    F(NIDORINA) \
+    F(NIDOQUEEN) \
+    F(NIDORAN_M) \
+    F(NIDORINO) \
+    F(NIDOKING) \
+    F(CLEFAIRY) \
+    F(CLEFABLE) \
+    F(PARAS) \
+    F(PARASECT) \
+    F(VENONAT) \
+    F(VENOMOTH) \
+    F(DIGLETT) \
+    F(DUGTRIO) \
+    F(MEOWTH) \
+    F(PERSIAN) \
+    F(MANKEY) \
+    F(PRIMEAPE) \
+    F(GROWLITHE) \
+    F(ARCANINE) \
+    F(POLIWAG) \
+    F(POLIWHIRL) \
+    F(POLIWRATH) \
+    F(BELLSPROUT) \
+    F(WEEPINBELL) \
+    F(VICTREEBEL) \
+    F(PONYTA) \
+    F(RAPIDASH) \
+    F(SLOWPOKE) \
+    F(SLOWBRO) \
+    F(FARFETCHD) \
+    F(SEEL) \
+    F(DEWGONG) \
+    F(SHELLDER) \
+    F(CLOYSTER) \
+    F(GASTLY) \
+    F(HAUNTER) \
+    F(GENGAR) \
+    F(ONIX) \
+    F(DROWZEE) \
+    F(HYPNO) \
+    F(KRABBY) \
+    F(KINGLER) \
+    F(EXEGGCUTE) \
+    F(EXEGGUTOR) \
+    F(CUBONE) \
+    F(MAROWAK) \
+    F(HITMONLEE) \
+    F(HITMONCHAN) \
+    F(LICKITUNG) \
+    F(CHANSEY) \
+    F(TANGELA) \
+    F(KANGASKHAN) \
+    F(MR_MIME) \
+    F(SCYTHER) \
+    F(JYNX) \
+    F(ELECTABUZZ) \
+    F(MAGMAR) \
+    F(TAUROS) \
+    F(LAPRAS) \
+    F(DITTO) \
+    F(EEVEE) \
+    F(VAPOREON) \
+    F(JOLTEON) \
+    F(FLAREON) \
+    F(PORYGON) \
+    F(OMANYTE) \
+    F(OMASTAR) \
+    F(KABUTO) \
+    F(KABUTOPS) \
+    F(AERODACTYL) \
+    F(SNORLAX) \
+    F(CHIKORITA) \
+    F(BAYLEEF) \
+    F(MEGANIUM) \
+    F(CYNDAQUIL) \
+    F(QUILAVA) \
+    F(TYPHLOSION) \
+    F(TOTODILE) \
+    F(CROCONAW) \
+    F(FERALIGATR) \
+    F(LEDYBA) \
+    F(LEDIAN) \
+    F(SPINARAK) \
+    F(ARIADOS) \
+    F(CLEFFA) \
+    F(TOGEPI) \
+    F(TOGETIC) \
+    F(MAREEP) \
+    F(FLAAFFY) \
+    F(AMPHAROS) \
+    F(SUDOWOODO) \
+    F(POLITOED) \
+    F(HOPPIP) \
+    F(SKIPLOOM) \
+    F(JUMPLUFF) \
+    F(AIPOM) \
+    F(SUNKERN) \
+    F(SUNFLORA) \
+    F(YANMA) \
+    F(WOOPER) \
+    F(QUAGSIRE) \
+    F(ESPEON) \
+    F(UMBREON) \
+    F(MURKROW) \
+    F(SLOWKING) \
+    F(MISDREAVUS) \
+    F(UNOWN) \
+    F(PINECO) \
+    F(FORRETRESS) \
+    F(DUNSPARCE) \
+    F(GLIGAR) \
+    F(STEELIX) \
+    F(SNUBBULL) \
+    F(GRANBULL) \
+    F(QWILFISH) \
+    F(SCIZOR) \
+    F(SHUCKLE) \
+    F(SNEASEL) \
+    F(TEDDIURSA) \
+    F(URSARING) \
+    F(SWINUB) \
+    F(PILOSWINE) \
+    F(REMORAID) \
+    F(OCTILLERY) \
+    F(DELIBIRD) \
+    F(MANTINE) \
+    F(PORYGON2) \
+    F(STANTLER) \
+    F(SMEARGLE) \
+    F(TYROGUE) \
+    F(HITMONTOP) \
+    F(SMOOCHUM) \
+    F(ELEKID) \
+    F(MAGBY) \
+    F(MILTANK) \
+    F(BLISSEY)
 
 // Hoenn Pokédex order
 enum HoennDexOrder
@@ -1559,7 +1711,7 @@ enum KantoDexOrder
 };
 
 #define KANTO_DEX_COUNT (KANTO_DEX_MEW + 1)
-#define HOENN_DEX_COUNT (HOENN_DEX_TYRANITAR + 1) // emerald+: was HOENN_DEX_DEOXYS + 1.
+#define HOENN_DEX_COUNT (HOENN_DEX_BLISSEY + 1) // emerald+: tracks the LAST macro entry. // emerald+: was HOENN_DEX_DEOXYS + 1.
                                                   // Must track the LAST entry of
                                                   // FOREACH_SPECIES_IN_HOENN_DEX_ORDER, or appended
                                                   // species fall silently outside the dex.

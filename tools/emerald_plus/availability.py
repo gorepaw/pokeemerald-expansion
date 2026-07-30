@@ -11,14 +11,20 @@ import json, re, os, collections
 
 os.chdir(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
 
+# The species enum is NOT national dex order past ~1008 - it interleaves
+# regional forms (Samurott-Hisui is 1000), the cosmetic Pikachu caps
+# (1009-1023) and the Unown letters, while real Gen 8-9 species sit far higher
+# (Pecharunt is 1434). Reading a generation off the enum value therefore places
+# Pikachu hats and misses Hydrapple. The national dex list is the only correct
+# source. For 1-386 the two happen to agree, which is why this went unnoticed.
 st = open("include/constants/species.h", encoding="utf-8").read()
-bynum = {}
-for m in re.finditer(r'SPECIES_(\w+)\s*=\s*(\d+),', st):
-    n = int(m.group(2))
-    if 1 <= n <= 386 and n not in bynum:
-        bynum[n] = m.group(1)
-GEN13 = [bynum[i] for i in sorted(bynum)]
-NUM = {v: k for k, v in bynum.items()}
+known = set(re.findall(r'SPECIES_(\w+)\s*=', st))
+pdx = open("include/constants/pokedex.h", encoding="utf-8").read()
+dexnames = re.findall(r'NATIONAL_DEX_(\w+),', pdx)      # [0] is NONE
+NUM = {nm: i for i, nm in enumerate(dexnames) if i and nm in known}
+GEN13 = [nm for nm, i in sorted(NUM.items(), key=lambda kv: kv[1]) if i <= 386]
+GEN49 = [nm for nm, i in sorted(NUM.items(), key=lambda kv: kv[1])
+         if 387 <= i <= 1025]
 
 d = json.load(open("src/data/wild_encounters.json", encoding="utf-8"))
 hoenn, kanto = set(), set()
@@ -114,7 +120,9 @@ SCRIPT = {
     "TREECKO", "TORCHIC", "MUDKIP",
     "BULBASAUR", "CHARMANDER", "SQUIRTLE",     # Mr. Stone      (emerald+)
     "CHIKORITA", "CYNDAQUIL", "TOTODILE",      # Steven, R118   (emerald+)
-    "CASTFORM_NORMAL",                         # Weather Institute gift
+    # Both spellings: the national dex calls it CASTFORM, the species constant
+    # is CASTFORM_NORMAL, and the two sets are keyed differently.
+    "CASTFORM_NORMAL", "CASTFORM",             # Weather Institute gift
     "LILEEP", "ANORITH",                       # fossils
     "WYNAUT",                                  # Lavaridge egg
     "FEEBAS",                                  # gWildFeebas, Route 119 tiles
@@ -124,7 +132,7 @@ SCRIPT = {
     "REGIROCK", "REGICE", "REGISTEEL",         # Braille puzzles
     "BELDUM",                                  # Steven's gift (+ now wild)
 }
-EVENT = {"DEOXYS_NORMAL", "JIRACHI"}           # Mystery Gift only - NOT obtainable
+EVENT = {"DEOXYS_NORMAL", "DEOXYS", "JIRACHI"}  # Mystery Gift only - NOT obtainable
 LEGEND = {"ARTICUNO", "ZAPDOS", "MOLTRES", "MEWTWO", "MEW", "RAIKOU", "ENTEI",
           "SUICUNE", "LUGIA", "HO_OH", "CELEBI"} | EVENT
 
@@ -161,3 +169,56 @@ print(f"--- {len(leg_f)} legendary/event families ---")
 for fam in sorted(leg_f.values(), key=lambda v: NUM.get(v[0], 999)):
     print("   ", ", ".join(sorted(fam, key=lambda s: NUM.get(s, 999))))
 print("\n(K = already lives in a Kanto-side table)")
+
+
+# --------------------------------------------------------------------------
+# Gen 4-9, which lives in Kanto. Same family logic, but reachability counts
+# BOTH regions - Kanto is postgame, so hosting a line there still makes it
+# obtainable, and plenty of Gen 4-9 arrive free by evolving a Gen 1-3 line.
+# --------------------------------------------------------------------------
+LEGEND49 = set()
+_leg = os.path.join(os.path.dirname(os.path.abspath(__file__)), "legendaries49.txt")
+if os.path.exists(_leg):
+    LEGEND49 = set(open(_leg, encoding="utf-8").read().split())
+
+fam2, comps = {}, []
+for s in GEN13 + GEN49:
+    if s in fam2:
+        continue
+    comp, stack = set(), [s]
+    while stack:
+        c = stack.pop()
+        if c in comp:
+            continue
+        comp.add(c)
+        stack.extend(adj.get(c, ()))
+    cid = len(comps)
+    comps.append(comp)
+    for c in comp:
+        fam2[c] = cid
+
+reach = set(hoenn | kanto | SCRIPT)
+stack = list(reach)
+while stack:
+    for nxt in adj.get(stack.pop(), ()):
+        if nxt not in reach:
+            reach.add(nxt)
+            stack.append(nxt)
+
+miss49 = collections.OrderedDict()
+for s in GEN49:
+    if s not in reach:
+        miss49.setdefault(fam2[s], []).append(s)
+leg49 = {f: v for f, v in miss49.items() if any(s in LEGEND49 for s in v)}
+ord49 = {f: v for f, v in miss49.items() if f not in leg49}
+gone = sum(len(v) for v in miss49.values())
+
+print()
+print("=" * 74)
+print(f"Gen 4-9 species reachable (either region): {len(GEN49) - gone}/{len(GEN49)}")
+print(f"families with zero presence anywhere     : {len(miss49)}"
+      f"  ({len(leg49)} legendary/paradox, {len(ord49)} not)")
+if ord49:
+    print(f"\n--- {len(ord49)} ordinary Gen 4-9 families still homeless ---")
+    for fam in sorted(ord49.values(), key=lambda v: NUM.get(v[0], 9999)):
+        print("   ", ", ".join(sorted(fam, key=lambda s: NUM.get(s, 9999))))

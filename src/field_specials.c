@@ -2411,7 +2411,7 @@ void ShowScrollableMultichoice(void)
         break;
     case SCROLL_MULTI_BF_EXCHANGE_CORNER_VITAMIN_VENDOR:
         task->tMaxItemsOnScreen = MAX_SCROLL_MULTI_ON_SCREEN;
-        task->tNumItems = 7;
+        task->tNumItems = 8; // emerald+: was 7, before the Linking Cord joined this counter.
         task->tLeft = 14;
         task->tTop = 1;
         task->tWidth = 15;
@@ -2572,6 +2572,7 @@ static const u8 *const sScrollableMultichoiceOptions[][MAX_SCROLL_MULTI_LENGTH] 
         COMPOUND_STRING("ZINC{CLEAR_TO 100}1BP"),
         COMPOUND_STRING("CARBOS{CLEAR_TO 100}1BP"),
         COMPOUND_STRING("HP UP{CLEAR_TO 100}1BP"),
+        COMPOUND_STRING("LINKING CORD{CLEAR_TO 100}1BP"), // emerald+
         gText_Exit
     },
     [SCROLL_MULTI_BF_EXCHANGE_CORNER_HOLD_ITEM_VENDOR] =

@@ -87,10 +87,13 @@ def main():
     for mapdir, mapconst in maps:
         floor = floors.get(mapconst)
         is_gym = "Gym" in mapdir
-        for t in [x for x in
-                  (re.findall(r'trainerbattle\w*\s+(TRAINER_[A-Z0-9_]+)',
-                              open(f"data/maps/{mapdir}/scripts.inc", encoding="utf-8").read())
-                   if os.path.exists(f"data/maps/{mapdir}/scripts.inc") else [])]:
+        # dict.fromkeys, not set(): a trainer referenced twice in one script
+        # (a second trainerbattle for the post-battle line, say) is still one
+        # trainer, but the order the script lists them in is worth keeping.
+        for t in dict.fromkeys(
+                re.findall(r'trainerbattle\w*\s+(TRAINER_[A-Z0-9_]+)',
+                           open(f"data/maps/{mapdir}/scripts.inc", encoding="utf-8").read())
+                if os.path.exists(f"data/maps/{mapdir}/scripts.inc") else []):
             mons = parties.get(t)
             if mons is None:
                 continue

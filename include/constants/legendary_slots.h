@@ -19,29 +19,27 @@
 // builds a fresh personality every call) but must NOT reroll which Pokemon is
 // standing there, or the encounter could not be hunted.
 
-enum LegendarySlot
-{
-    LEGENDARY_SLOT_SEAFOAM_ISLANDS,     // Articuno
-    LEGENDARY_SLOT_POWER_PLANT,         // Zapdos
-    LEGENDARY_SLOT_MT_EMBER,            // Moltres
-    LEGENDARY_SLOT_CERULEAN_CAVE,       // Mewtwo
-    LEGENDARY_SLOT_NAVEL_ROCK_BASE,     // Lugia
-    LEGENDARY_SLOT_NAVEL_ROCK_SUMMIT,   // Ho-Oh
-    LEGENDARY_SLOT_BIRTH_ISLAND,        // Deoxys
-    LEGENDARY_SLOT_FARAWAY_ISLAND,      // Mew
-    LEGENDARY_SLOT_NEW_MAUVILLE,        // Raikou    (emerald+ placement)
-    LEGENDARY_SLOT_FIERY_PATH,          // Entei     (emerald+ placement)
-    LEGENDARY_SLOT_SHOAL_CAVE,          // Suicune   (emerald+ placement)
-    LEGENDARY_SLOT_VIRIDIAN_FOREST,     // Celebi    (emerald+ placement)
-    LEGENDARY_SLOT_METEOR_FALLS,        // Jirachi   (emerald+ placement)
-    LEGENDARY_SLOT_SKY_PILLAR,          // Rayquaza's room
-    LEGENDARY_SLOT_DESERT_RUINS,        // Regirock's room
-    LEGENDARY_SLOT_ISLAND_CAVE,         // Regice's room
-    LEGENDARY_SLOT_ANCIENT_TOMB,        // Registeel's room
-    LEGENDARY_SLOT_CAVE_OF_ORIGIN,      // postgame
-    LEGENDARY_SLOT_SEALED_CHAMBER,      // postgame
-    NUM_LEGENDARY_SLOTS
-};
+#define LEGENDARY_SLOT_SEAFOAM_ISLANDS         0     // Articuno
+#define LEGENDARY_SLOT_POWER_PLANT             1         // Zapdos
+#define LEGENDARY_SLOT_MT_EMBER                2            // Moltres
+#define LEGENDARY_SLOT_CERULEAN_CAVE           3       // Mewtwo
+#define LEGENDARY_SLOT_NAVEL_ROCK_BASE         4     // Lugia
+#define LEGENDARY_SLOT_NAVEL_ROCK_SUMMIT       5   // Ho-Oh
+#define LEGENDARY_SLOT_BIRTH_ISLAND            6        // Deoxys
+#define LEGENDARY_SLOT_FARAWAY_ISLAND          7      // Mew
+#define LEGENDARY_SLOT_NEW_MAUVILLE            8        // Raikou    (emerald+ placement)
+#define LEGENDARY_SLOT_FIERY_PATH              9          // Entei     (emerald+ placement)
+#define LEGENDARY_SLOT_SHOAL_CAVE              10          // Suicune   (emerald+ placement)
+#define LEGENDARY_SLOT_VIRIDIAN_FOREST         11     // Celebi    (emerald+ placement)
+#define LEGENDARY_SLOT_METEOR_FALLS            12        // Jirachi   (emerald+ placement)
+#define LEGENDARY_SLOT_SKY_PILLAR              13          // Rayquaza's room
+#define LEGENDARY_SLOT_DESERT_RUINS            14        // Regirock's room
+#define LEGENDARY_SLOT_ISLAND_CAVE             15         // Regice's room
+#define LEGENDARY_SLOT_ANCIENT_TOMB            16        // Registeel's room
+#define LEGENDARY_SLOT_CAVE_OF_ORIGIN          17      // postgame
+#define LEGENDARY_SLOT_SEALED_CHAMBER          18      // postgame
+
+#define NUM_LEGENDARY_SLOTS                    19
 
 // Longest queue any slot has. 90 Gen 4-9 families over 19 slots.
 #define MAX_LEGENDARY_QUEUE   5

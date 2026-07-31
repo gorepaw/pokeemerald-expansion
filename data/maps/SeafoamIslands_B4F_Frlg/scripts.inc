@@ -22,6 +22,8 @@ SeafoamIslands_B4F_OnTransition::
 	call_if_unset FLAG_FOUGHT_ARTICUNO, SeafoamIslands_B4F_EventScript_ShowArticuno
 	call_if_unset FLAG_STOPPED_SEAFOAM_B4F_CURRENT, SeafoamIslands_B4F_EventScript_CheckStoppedCurrent
 	call_if_set FLAG_STOPPED_SEAFOAM_B4F_CURRENT, SeafoamIslands_B4F_EventScript_SetNoCurrentLayout
+	setvar VAR_0x8004, LEGENDARY_SLOT_SEAFOAM_ISLANDS
+	special UpdateLegendarySlot
 	end
 
 SeafoamIslands_B4F_EventScript_CheckStoppedCurrent::
@@ -154,7 +156,7 @@ SeafoamIslands_B4F_Movement_WalkUp::
 SeafoamIslands_B4F_EventScript_Articuno::
 	lock
 	faceplayer
-	setwildbattle SPECIES_ARTICUNO, 50
+	setwildbattle SPECIES_ARTICUNO, 70
 	waitse
 	playmoncry SPECIES_ARTICUNO, CRY_MODE_ENCOUNTER
 	message Text_Gyaoo
@@ -221,3 +223,9 @@ SeafoamIslands_B4F_Text_DangerFastCurrent::
 	.string "DANGER\n"
 	.string "Fast current!$"
 
+
+@ emerald+: rotating legendary slot. The shared encounter does the work.
+SeafoamIslands_B4F_EventScript_LegendarySlot::
+	setvar VAR_0x8004, LEGENDARY_SLOT_SEAFOAM_ISLANDS
+	goto EventScript_LegendarySlotEncounter
+	end

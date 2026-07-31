@@ -36,6 +36,8 @@ FarawayIsland_Interior_OnTransition:
 	setvar VAR_FARAWAY_ISLAND_STEP_COUNTER, 0
 	setvar VAR_TEMP_1, 1
 	call_if_unset FLAG_CAUGHT_MEW, FarawayIsland_Interior_EventScript_TryShowMew
+	setvar VAR_0x8004, LEGENDARY_SLOT_FARAWAY_ISLAND
+	special UpdateLegendarySlot
 	end
 
 FarawayIsland_Interior_EventScript_TryShowMew::
@@ -184,3 +186,9 @@ FarawayIsland_Interior_EventScript_HideMewWhenGrassCut::
 
 FarawayIsland_Interior_Text_TheFeelingOfBeingWatchedFaded:
 	.string "The feeling of being watched faded…$"
+
+@ emerald+: rotating legendary slot. The shared encounter does the work.
+FarawayIsland_Interior_EventScript_LegendarySlot::
+	setvar VAR_0x8004, LEGENDARY_SLOT_FARAWAY_ISLAND
+	goto EventScript_LegendarySlotEncounter
+	end

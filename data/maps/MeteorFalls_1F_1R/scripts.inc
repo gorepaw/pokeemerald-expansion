@@ -1,5 +1,6 @@
 MeteorFalls_1F_1R_MapScripts::
 	map_script MAP_SCRIPT_ON_LOAD, MeteorFalls_1F_1R_OnLoad
+	map_script MAP_SCRIPT_ON_TRANSITION, MeteorFalls_1F_1R_OnTransition_EP
 	.byte 0
 
 MeteorFalls_1F_1R_OnLoad:
@@ -307,3 +308,53 @@ MeteorFalls_1F_1R_Text_WhatsTeamMagmaDoingAtMtChimney:
 	.string "PROF. COZMO: But that TEAM MAGMA…\p"
 	.string "What are they going to do with that\n"
 	.string "METEORITE at MT. CHIMNEY?$"
+
+@ emerald+: this map had no ON_TRANSITION of its own.
+MeteorFalls_1F_1R_OnTransition_EP::
+	setvar VAR_0x8004, LEGENDARY_SLOT_METEOR_FALLS
+	special UpdateLegendarySlot
+	call_if_unset FLAG_EP_FOUGHT_JIRACHI, MeteorFalls_1F_1R_EventScript_ShowJirachi
+	end
+
+@ emerald+: rotating legendary slot. The shared encounter does the work.
+MeteorFalls_1F_1R_EventScript_LegendarySlot::
+	setvar VAR_0x8004, LEGENDARY_SLOT_METEOR_FALLS
+	goto EventScript_LegendarySlotEncounter
+	end
+
+@ emerald+: JIRACHI - one of the five Gen 1-3 legendaries with nowhere to be
+@ caught. Once it is resolved this spot becomes a rotating slot.
+MeteorFalls_1F_1R_EventScript_Jirachi::
+	lock
+	faceplayer
+	setwildbattle SPECIES_JIRACHI, 70
+	waitse
+	playmoncry SPECIES_JIRACHI, CRY_MODE_ENCOUNTER
+	delay 40
+	waitmoncry
+	playbgm MUS_RG_ENCOUNTER_GYM_LEADER, 0
+	waitbuttonpress
+	setflag FLAG_SYS_CTRL_OBJ_DELETE
+	special BattleSetup_StartLegendaryBattle
+	clearflag FLAG_SYS_CTRL_OBJ_DELETE
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, MeteorFalls_1F_1R_EventScript_JirachiDefeated
+	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, MeteorFalls_1F_1R_EventScript_JirachiFled
+	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, MeteorFalls_1F_1R_EventScript_JirachiFled
+	setflag FLAG_EP_FOUGHT_JIRACHI
+	release
+	end
+
+MeteorFalls_1F_1R_EventScript_JirachiDefeated::
+	setflag FLAG_EP_FOUGHT_JIRACHI
+	goto EventScript_RemoveStaticMon
+	end
+
+MeteorFalls_1F_1R_EventScript_JirachiFled::
+	setvar VAR_0x8004, SPECIES_JIRACHI
+	goto EventScript_MonFlewAway
+	end
+
+MeteorFalls_1F_1R_EventScript_ShowJirachi::
+	clearflag FLAG_EP_HIDE_JIRACHI
+	return

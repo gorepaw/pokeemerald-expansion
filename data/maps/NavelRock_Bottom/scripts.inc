@@ -6,6 +6,8 @@ NavelRock_Bottom_MapScripts::
 NavelRock_Bottom_OnTransition:
 	call_if_set FLAG_CAUGHT_LUGIA, NavelRock_Bottom_EventScript_HideLugia
 	call_if_unset FLAG_CAUGHT_LUGIA, NavelRock_Bottom_EventScript_TryShowLugia
+	setvar VAR_0x8004, LEGENDARY_SLOT_NAVEL_ROCK_BASE
+	special UpdateLegendarySlot
 	end
 
 NavelRock_Bottom_EventScript_HideLugia::
@@ -72,4 +74,10 @@ NavelRock_Bottom_EventScript_DefeatedLugia::
 NavelRock_Bottom_EventScript_RanFromLugia::
 	setvar VAR_0x8004, SPECIES_LUGIA
 	goto Common_EventScript_LegendaryFlewAway
+	end
+
+@ emerald+: rotating legendary slot. The shared encounter does the work.
+NavelRock_Bottom_EventScript_LegendarySlot::
+	setvar VAR_0x8004, LEGENDARY_SLOT_NAVEL_ROCK_BASE
+	goto EventScript_LegendarySlotEncounter
 	end

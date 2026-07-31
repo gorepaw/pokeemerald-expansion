@@ -6,6 +6,8 @@ NavelRock_Top_MapScripts::
 NavelRock_Top_OnTransition:
 	call_if_set FLAG_CAUGHT_HO_OH, NavelRock_Top_EventScript_HideHoOh
 	call_if_unset FLAG_CAUGHT_HO_OH, NavelRock_Top_EventScript_TryShowHoOh
+	setvar VAR_0x8004, LEGENDARY_SLOT_NAVEL_ROCK_SUMMIT
+	special UpdateLegendarySlot
 	end
 
 NavelRock_Top_EventScript_HideHoOh::
@@ -112,3 +114,9 @@ NavelRock_Top_Movement_HoOhAppear:
 	walk_in_place_down
 	walk_in_place_down
 	step_end
+
+@ emerald+: rotating legendary slot. The shared encounter does the work.
+NavelRock_Top_EventScript_LegendarySlot::
+	setvar VAR_0x8004, LEGENDARY_SLOT_NAVEL_ROCK_SUMMIT
+	goto EventScript_LegendarySlotEncounter
+	end

@@ -4,6 +4,9 @@ ViridianForest_Frlg_MapScripts::
 
 ViridianForest_OnTransition::
 	setworldmapflag FLAG_WORLD_MAP_VIRIDIAN_FOREST
+	setvar VAR_0x8004, LEGENDARY_SLOT_VIRIDIAN_FOREST
+	special UpdateLegendarySlot
+	call_if_unset FLAG_EP_FOUGHT_CELEBI, ViridianForest_EventScript_ShowCelebi
 	end
 
 ViridianForest_EventScript_Youngster::
@@ -168,3 +171,46 @@ ViridianForest_Text_LeavingViridianForest::
 	.string "LEAVING VIRIDIAN FOREST\n"
 	.string "PEWTER CITY AHEAD$"
 
+
+@ emerald+: rotating legendary slot. The shared encounter does the work.
+ViridianForest_EventScript_LegendarySlot::
+	setvar VAR_0x8004, LEGENDARY_SLOT_VIRIDIAN_FOREST
+	goto EventScript_LegendarySlotEncounter
+	end
+
+@ emerald+: CELEBI - one of the five Gen 1-3 legendaries with nowhere to be
+@ caught. Once it is resolved this spot becomes a rotating slot.
+ViridianForest_EventScript_Celebi::
+	lock
+	faceplayer
+	setwildbattle SPECIES_CELEBI, 70
+	waitse
+	playmoncry SPECIES_CELEBI, CRY_MODE_ENCOUNTER
+	delay 40
+	waitmoncry
+	playbgm MUS_RG_ENCOUNTER_GYM_LEADER, 0
+	waitbuttonpress
+	setflag FLAG_SYS_CTRL_OBJ_DELETE
+	special BattleSetup_StartLegendaryBattle
+	clearflag FLAG_SYS_CTRL_OBJ_DELETE
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, ViridianForest_EventScript_CelebiDefeated
+	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, ViridianForest_EventScript_CelebiFled
+	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, ViridianForest_EventScript_CelebiFled
+	setflag FLAG_EP_FOUGHT_CELEBI
+	release
+	end
+
+ViridianForest_EventScript_CelebiDefeated::
+	setflag FLAG_EP_FOUGHT_CELEBI
+	goto EventScript_RemoveStaticMon
+	end
+
+ViridianForest_EventScript_CelebiFled::
+	setvar VAR_0x8004, SPECIES_CELEBI
+	goto EventScript_MonFlewAway
+	end
+
+ViridianForest_EventScript_ShowCelebi::
+	clearflag FLAG_EP_HIDE_CELEBI
+	return

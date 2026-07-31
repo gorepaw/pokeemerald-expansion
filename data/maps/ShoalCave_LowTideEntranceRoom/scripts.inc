@@ -5,6 +5,9 @@ ShoalCave_LowTideEntranceRoom_MapScripts::
 ShoalCave_LowTideEntranceRoom_OnTransition:
 	special UpdateShoalTideFlag
 	goto_if_set FLAG_SYS_SHOAL_TIDE, ShoalCave_LowTideEntranceRoom_EventScript_SetHighTide
+	setvar VAR_0x8004, LEGENDARY_SLOT_SHOAL_CAVE
+	special UpdateLegendarySlot
+	call_if_unset FLAG_EP_FOUGHT_SUICUNE, ShoalCave_LowTideEntranceRoom_EventScript_ShowSuicune
 	goto ShoalCave_LowTideEntranceRoom_EventScript_SetLowTide
 
 ShoalCave_LowTideEntranceRoom_EventScript_SetHighTide::
@@ -88,4 +91,47 @@ ShoalCave_LowTideEntranceRoom_EventScript_ResetShoalItems::
 	clearflag FLAG_RECEIVED_SHOAL_SHELL_3
 	clearflag FLAG_RECEIVED_SHOAL_SHELL_4
 	clearflag FLAG_SYS_SHOAL_ITEM
+	return
+
+@ emerald+: rotating legendary slot. The shared encounter does the work.
+ShoalCave_LowTideEntranceRoom_EventScript_LegendarySlot::
+	setvar VAR_0x8004, LEGENDARY_SLOT_SHOAL_CAVE
+	goto EventScript_LegendarySlotEncounter
+	end
+
+@ emerald+: SUICUNE - one of the five Gen 1-3 legendaries with nowhere to be
+@ caught. Once it is resolved this spot becomes a rotating slot.
+ShoalCave_LowTideEntranceRoom_EventScript_Suicune::
+	lock
+	faceplayer
+	setwildbattle SPECIES_SUICUNE, 70
+	waitse
+	playmoncry SPECIES_SUICUNE, CRY_MODE_ENCOUNTER
+	delay 40
+	waitmoncry
+	playbgm MUS_RG_ENCOUNTER_GYM_LEADER, 0
+	waitbuttonpress
+	setflag FLAG_SYS_CTRL_OBJ_DELETE
+	special BattleSetup_StartLegendaryBattle
+	clearflag FLAG_SYS_CTRL_OBJ_DELETE
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, ShoalCave_LowTideEntranceRoom_EventScript_SuicuneDefeated
+	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, ShoalCave_LowTideEntranceRoom_EventScript_SuicuneFled
+	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, ShoalCave_LowTideEntranceRoom_EventScript_SuicuneFled
+	setflag FLAG_EP_FOUGHT_SUICUNE
+	release
+	end
+
+ShoalCave_LowTideEntranceRoom_EventScript_SuicuneDefeated::
+	setflag FLAG_EP_FOUGHT_SUICUNE
+	goto EventScript_RemoveStaticMon
+	end
+
+ShoalCave_LowTideEntranceRoom_EventScript_SuicuneFled::
+	setvar VAR_0x8004, SPECIES_SUICUNE
+	goto EventScript_MonFlewAway
+	end
+
+ShoalCave_LowTideEntranceRoom_EventScript_ShowSuicune::
+	clearflag FLAG_EP_HIDE_SUICUNE
 	return

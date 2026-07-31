@@ -15,6 +15,8 @@ CeruleanCave_B1F_EventScript_TryRemoveMewtwo::
 
 CeruleanCave_B1F_OnTransition::
 	call_if_unset FLAG_FOUGHT_MEWTWO, CeruleanCave_B1F_EventScript_ShowMewtwo
+	setvar VAR_0x8004, LEGENDARY_SLOT_CERULEAN_CAVE
+	special UpdateLegendarySlot
 	end
 
 CeruleanCave_B1F_EventScript_ShowMewtwo::
@@ -57,3 +59,9 @@ CeruleanCave_B1F_EventScript_RanFromMewtwo::
 CeruleanCave_B1F_Text_Mew::
 	.string "Mew!$"
 
+
+@ emerald+: rotating legendary slot. The shared encounter does the work.
+CeruleanCave_B1F_EventScript_LegendarySlot::
+	setvar VAR_0x8004, LEGENDARY_SLOT_CERULEAN_CAVE
+	goto EventScript_LegendarySlotEncounter
+	end

@@ -31,6 +31,8 @@ IslandCave_OnTransition:
 	setflag FLAG_LANDMARK_ISLAND_CAVE
 	call IslandCave_EventScript_ClearSteps
 	call_if_unset FLAG_DEFEATED_REGICE, IslandCave_EventScript_ShowRegice
+	setvar VAR_0x8004, LEGENDARY_SLOT_ISLAND_CAVE
+	special UpdateLegendarySlot
 	end
 
 IslandCave_EventScript_ShowRegice::
@@ -94,7 +96,7 @@ IslandCave_EventScript_Regice::
 	playmoncry SPECIES_REGICE, CRY_MODE_ENCOUNTER
 	delay 40
 	waitmoncry
-	setwildbattle SPECIES_REGICE, 40
+	setwildbattle SPECIES_REGICE, 70
 	setflag FLAG_SYS_CTRL_OBJ_DELETE
 	special StartRegiBattle
 	clearflag FLAG_SYS_CTRL_OBJ_DELETE
@@ -114,4 +116,10 @@ IslandCave_EventScript_DefeatedRegice::
 IslandCave_EventScript_RanFromRegice::
 	setvar VAR_0x8004, SPECIES_REGICE
 	goto Common_EventScript_LegendaryFlewAway
+	end
+
+@ emerald+: rotating legendary slot. The shared encounter does the work.
+IslandCave_EventScript_LegendarySlot::
+	setvar VAR_0x8004, LEGENDARY_SLOT_ISLAND_CAVE
+	goto EventScript_LegendarySlotEncounter
 	end

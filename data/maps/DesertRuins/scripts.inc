@@ -30,6 +30,8 @@ DesertRuins_EventScript_HideRegiEntrance::
 DesertRuins_OnTransition:
 	setflag FLAG_LANDMARK_DESERT_RUINS
 	call_if_unset FLAG_DEFEATED_REGIROCK, DesertRuins_EventScript_ShowRegirock
+	setvar VAR_0x8004, LEGENDARY_SLOT_DESERT_RUINS
+	special UpdateLegendarySlot
 	end
 
 DesertRuins_EventScript_ShowRegirock::
@@ -61,7 +63,7 @@ DesertRuins_EventScript_Regirock::
 	playmoncry SPECIES_REGIROCK, CRY_MODE_ENCOUNTER
 	delay 40
 	waitmoncry
-	setwildbattle SPECIES_REGIROCK, 40
+	setwildbattle SPECIES_REGIROCK, 70
 	setflag FLAG_SYS_CTRL_OBJ_DELETE
 	special StartRegiBattle
 	clearflag FLAG_SYS_CTRL_OBJ_DELETE
@@ -83,3 +85,9 @@ DesertRuins_EventScript_RanFromRegirock::
 	goto Common_EventScript_LegendaryFlewAway
 	end
 
+
+@ emerald+: rotating legendary slot. The shared encounter does the work.
+DesertRuins_EventScript_LegendarySlot::
+	setvar VAR_0x8004, LEGENDARY_SLOT_DESERT_RUINS
+	goto EventScript_LegendarySlotEncounter
+	end

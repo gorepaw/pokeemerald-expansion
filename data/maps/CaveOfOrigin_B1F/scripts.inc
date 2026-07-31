@@ -1,4 +1,5 @@
 CaveOfOrigin_B1F_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, CaveOfOrigin_B1F_OnTransition_EP
 	.byte 0
 
 CaveOfOrigin_B1F_EventScript_Wallace::
@@ -116,3 +117,15 @@ CaveOfOrigin_B1F_Text_WellHeadToSkyPillar:
 	.string "{PLAYER}{KUN}, there's not a moment to lose!\n"
 	.string "We'll head to the SKY PILLAR right away!$"
 
+
+@ emerald+: this map had no ON_TRANSITION of its own.
+CaveOfOrigin_B1F_OnTransition_EP::
+	setvar VAR_0x8004, LEGENDARY_SLOT_CAVE_OF_ORIGIN
+	special UpdateLegendarySlot
+	end
+
+@ emerald+: rotating legendary slot. The shared encounter does the work.
+CaveOfOrigin_B1F_EventScript_LegendarySlot::
+	setvar VAR_0x8004, LEGENDARY_SLOT_CAVE_OF_ORIGIN
+	goto EventScript_LegendarySlotEncounter
+	end

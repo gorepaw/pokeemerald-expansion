@@ -17,6 +17,8 @@ AncientTomb_EventScript_TryRemoveRegisteel::
 AncientTomb_OnTransition:
 	setflag FLAG_LANDMARK_ANCIENT_TOMB
 	call_if_unset FLAG_DEFEATED_REGISTEEL, AncientTomb_EventScript_ShowRegisteel
+	setvar VAR_0x8004, LEGENDARY_SLOT_ANCIENT_TOMB
+	special UpdateLegendarySlot
 	end
 
 AncientTomb_EventScript_ShowRegisteel::
@@ -61,7 +63,7 @@ AncientTomb_EventScript_Registeel::
 	playmoncry SPECIES_REGISTEEL, CRY_MODE_ENCOUNTER
 	delay 40
 	waitmoncry
-	setwildbattle SPECIES_REGISTEEL, 40
+	setwildbattle SPECIES_REGISTEEL, 70
 	setflag FLAG_SYS_CTRL_OBJ_DELETE
 	special StartRegiBattle
 	clearflag FLAG_SYS_CTRL_OBJ_DELETE
@@ -83,3 +85,9 @@ AncientTomb_EventScript_RanFromRegisteel::
 	goto Common_EventScript_LegendaryFlewAway
 	end
 
+
+@ emerald+: rotating legendary slot. The shared encounter does the work.
+AncientTomb_EventScript_LegendarySlot::
+	setvar VAR_0x8004, LEGENDARY_SLOT_ANCIENT_TOMB
+	goto EventScript_LegendarySlotEncounter
+	end

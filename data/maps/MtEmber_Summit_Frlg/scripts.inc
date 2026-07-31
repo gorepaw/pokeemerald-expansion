@@ -15,6 +15,8 @@ MtEmber_Summit_EventScript_TryRemoveMoltres::
 
 MtEmber_Summit_OnTransition::
 	call_if_unset FLAG_FOUGHT_MOLTRES, MtEmber_Summit_EventScript_ShowMoltres
+	setvar VAR_0x8004, LEGENDARY_SLOT_MT_EMBER
+	special UpdateLegendarySlot
 	end
 
 MtEmber_Summit_EventScript_ShowMoltres::
@@ -24,7 +26,7 @@ MtEmber_Summit_EventScript_ShowMoltres::
 MtEmber_Summit_EventScript_Moltres::
 	lock
 	faceplayer
-	setwildbattle SPECIES_MOLTRES, 50
+	setwildbattle SPECIES_MOLTRES, 70
 	waitse
 	playmoncry SPECIES_MOLTRES, CRY_MODE_ENCOUNTER
 	message Text_Gyaoo
@@ -52,4 +54,10 @@ MtEmber_Summit_EventScript_DefeatedMoltres::
 MtEmber_Summit_EventScript_RanFromMoltres::
 	setvar VAR_0x8004, SPECIES_MOLTRES
 	goto EventScript_MonFlewAway
+	end
+
+@ emerald+: rotating legendary slot. The shared encounter does the work.
+MtEmber_Summit_EventScript_LegendarySlot::
+	setvar VAR_0x8004, LEGENDARY_SLOT_MT_EMBER
+	goto EventScript_LegendarySlotEncounter
 	end

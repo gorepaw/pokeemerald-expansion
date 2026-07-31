@@ -18,6 +18,8 @@ PowerPlant_OnTransition::
 	call_if_unset FLAG_FOUGHT_ZAPDOS, PowerPlant_EventScript_ShowZapdos
 	call_if_unset FLAG_FOUGHT_POWER_PLANT_ELECTRODE_1, PowerPlant_EventScript_ShowElectrode1
 	call_if_unset FLAG_FOUGHT_POWER_PLANT_ELECTRODE_2, PowerPlant_EventScript_ShowElectrode2
+	setvar VAR_0x8004, LEGENDARY_SLOT_POWER_PLANT
+	special UpdateLegendarySlot
 	end
 
 PowerPlant_EventScript_ShowZapdos::
@@ -35,7 +37,7 @@ PowerPlant_EventScript_ShowElectrode2::
 PowerPlant_EventScript_Zapdos::
 	lock
 	faceplayer
-	setwildbattle SPECIES_ZAPDOS, 50
+	setwildbattle SPECIES_ZAPDOS, 70
 	waitse
 	playmoncry SPECIES_ZAPDOS, CRY_MODE_ENCOUNTER
 	message Text_Gyaoo
@@ -111,4 +113,10 @@ PowerPlant_EventScript_Electrode2::
 PowerPlant_EventScript_FoughtElectrode2::
 	setflag FLAG_FOUGHT_POWER_PLANT_ELECTRODE_2
 	goto EventScript_RemoveStaticMon
+	end
+
+@ emerald+: rotating legendary slot. The shared encounter does the work.
+PowerPlant_EventScript_LegendarySlot::
+	setvar VAR_0x8004, LEGENDARY_SLOT_POWER_PLANT
+	goto EventScript_LegendarySlotEncounter
 	end

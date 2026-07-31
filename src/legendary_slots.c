@@ -1,6 +1,7 @@
 #include "global.h"
 #include "event_data.h"
 #include "item.h"
+#include "sound.h"
 #include "script_pokemon_util.h"
 #include "constants/event_objects.h"
 #include "constants/flags.h"
@@ -101,6 +102,12 @@ static const u16 sEventTickets[][2] =
     { ITEM_OLD_SEA_MAP,    FLAG_ENABLE_SHIP_FARAWAY_ISLAND }, // Mew
 };
 
+// The slot whose battle is currently running. Saved so the script does not have
+// to carry the slot through the battle in a var - VAR_0x8004 is scratch and the
+// battle is free to clobber it. Nothing can be saved or reloaded mid-encounter,
+// so an EWRAM static is enough.
+static u8 sActiveSlot;
+
 static bool8 PrereqMet(u8 slot)
 {
     const struct LegendarySlotData *s = &sLegendarySlots[slot];
@@ -171,19 +178,29 @@ void SetUpLegendarySlotBattle(void)
     if (species == SPECIES_NONE)
         return;
 
+    sActiveSlot = slot;
+
     // Fresh personality and fresh IVs every call, which is what makes these
     // huntable: re-entering the room rerolls nature and shininess while the
     // species stays put.
     SetScriptedWildMon(species, LEGENDARY_SLOT_LEVEL);
 }
 
+// Plays the cry of whatever is standing in the slot. playmoncry takes its
+// species as a literal, so it cannot be used here either.
+void PlayLegendarySlotCry(void)
+{
+    u16 species = SlotOccupant(sActiveSlot);
+
+    if (species != SPECIES_NONE)
+        PlayCry_Normal(species, 0);
+}
+
 // The occupant is gone - caught or defeated. Arm the slot.
 void ArmLegendarySlot(void)
 {
-    u8 slot = gSpecialVar_0x8004;
-
-    if (slot < NUM_LEGENDARY_SLOTS)
-        gSaveBlock1Ptr->legendarySlots[slot] |= LEGENDARY_SLOT_ARMED;
+    if (sActiveSlot < NUM_LEGENDARY_SLOTS)
+        gSaveBlock1Ptr->legendarySlots[sActiveSlot] |= LEGENDARY_SLOT_ARMED;
 }
 
 // Kanto's Champion has fallen. Every armed slot refills with its next

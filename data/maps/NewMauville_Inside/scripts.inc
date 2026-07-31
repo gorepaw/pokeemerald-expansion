@@ -22,6 +22,9 @@ NewMauville_Inside_OnTransition:
 	call_if_unset FLAG_DEFEATED_VOLTORB_1_NEW_MAUVILLE, NewMauville_Inside_EventScript_ShowVoltorb1
 	call_if_unset FLAG_DEFEATED_VOLTORB_2_NEW_MAUVILLE, NewMauville_Inside_EventScript_ShowVoltorb2
 	call_if_unset FLAG_DEFEATED_VOLTORB_3_NEW_MAUVILLE, NewMauville_Inside_EventScript_ShowVoltorb3
+	setvar VAR_0x8004, LEGENDARY_SLOT_NEW_MAUVILLE
+	special UpdateLegendarySlot
+	call_if_unset FLAG_EP_FOUGHT_RAIKOU, NewMauville_Inside_EventScript_ShowRaikou
 	end
 
 NewMauville_Inside_EventScript_ShowVoltorb1::
@@ -261,3 +264,46 @@ NewMauville_Inside_Text_SteppedOnSwitchGeneratorStopped:
 	.string "… … … … … … … …\p"
 	.string "The generator appears to have\n"
 	.string "stopped…$"
+
+@ emerald+: rotating legendary slot. The shared encounter does the work.
+NewMauville_Inside_EventScript_LegendarySlot::
+	setvar VAR_0x8004, LEGENDARY_SLOT_NEW_MAUVILLE
+	goto EventScript_LegendarySlotEncounter
+	end
+
+@ emerald+: RAIKOU - one of the five Gen 1-3 legendaries with nowhere to be
+@ caught. Once it is resolved this spot becomes a rotating slot.
+NewMauville_Inside_EventScript_Raikou::
+	lock
+	faceplayer
+	setwildbattle SPECIES_RAIKOU, 70
+	waitse
+	playmoncry SPECIES_RAIKOU, CRY_MODE_ENCOUNTER
+	delay 40
+	waitmoncry
+	playbgm MUS_RG_ENCOUNTER_GYM_LEADER, 0
+	waitbuttonpress
+	setflag FLAG_SYS_CTRL_OBJ_DELETE
+	special BattleSetup_StartLegendaryBattle
+	clearflag FLAG_SYS_CTRL_OBJ_DELETE
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, NewMauville_Inside_EventScript_RaikouDefeated
+	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, NewMauville_Inside_EventScript_RaikouFled
+	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, NewMauville_Inside_EventScript_RaikouFled
+	setflag FLAG_EP_FOUGHT_RAIKOU
+	release
+	end
+
+NewMauville_Inside_EventScript_RaikouDefeated::
+	setflag FLAG_EP_FOUGHT_RAIKOU
+	goto EventScript_RemoveStaticMon
+	end
+
+NewMauville_Inside_EventScript_RaikouFled::
+	setvar VAR_0x8004, SPECIES_RAIKOU
+	goto EventScript_MonFlewAway
+	end
+
+NewMauville_Inside_EventScript_ShowRaikou::
+	clearflag FLAG_EP_HIDE_RAIKOU
+	return

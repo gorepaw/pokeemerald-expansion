@@ -15,6 +15,8 @@ BirthIsland_Exterior_OnTransition:
 	setvar VAR_DEOXYS_ROCK_LEVEL, 0
 	call_if_set FLAG_BATTLED_DEOXYS, BirthIsland_Exterior_EventScript_HideDeoxysAndPuzzle
 	call_if_unset FLAG_BATTLED_DEOXYS, BirthIsland_Exterior_EventScript_TryShowDeoxysPuzzle
+	setvar VAR_0x8004, LEGENDARY_SLOT_BIRTH_ISLAND
+	special UpdateLegendarySlot
 	end
 
 BirthIsland_Exterior_EventScript_HideDeoxysAndPuzzle::
@@ -112,3 +114,9 @@ BirthIsland_Exterior_Movement_DeoxysApproach:
 	walk_slow_down
 	walk_slow_down
 	step_end
+
+@ emerald+: rotating legendary slot. The shared encounter does the work.
+BirthIsland_Exterior_EventScript_LegendarySlot::
+	setvar VAR_0x8004, LEGENDARY_SLOT_BIRTH_ISLAND
+	goto EventScript_LegendarySlotEncounter
+	end

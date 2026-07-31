@@ -17,6 +17,8 @@ SkyPillar_Top_EventScript_TryRemoveRayquaza::
 SkyPillar_Top_OnTransition:
 	call_if_lt VAR_SKY_PILLAR_STATE, 2, SkyPillar_Top_EventScript_SetCleanLayout
 	call_if_ge VAR_SKY_PILLAR_STATE, 2, SkyPillar_Top_EventScript_TryShowRayquaza
+	setvar VAR_0x8004, LEGENDARY_SLOT_SKY_PILLAR
+	special UpdateLegendarySlot
 	end
 
 SkyPillar_Top_EventScript_SetCleanLayout::
@@ -180,3 +182,9 @@ SkyPillar_Top_Movement_CameraPanDown:
 SkyPillar_Top_Text_RayquazaFlewOff:
 	.string "The awakened RAYQUAZA flew off…$"
 
+
+@ emerald+: rotating legendary slot. The shared encounter does the work.
+SkyPillar_Top_EventScript_LegendarySlot::
+	setvar VAR_0x8004, LEGENDARY_SLOT_SKY_PILLAR
+	goto EventScript_LegendarySlotEncounter
+	end

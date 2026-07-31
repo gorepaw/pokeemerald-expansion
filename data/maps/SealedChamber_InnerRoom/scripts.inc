@@ -1,4 +1,5 @@
 SealedChamber_InnerRoom_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, SealedChamber_InnerRoom_OnTransition_EP
 	.byte 0
 
 SealedChamber_InnerRoom_EventScript_BrailleBackWall::
@@ -67,3 +68,15 @@ SealedChamber_InnerRoom_EventScript_BrailleStoryPart6::
 	releaseall
 	end
 
+
+@ emerald+: this map had no ON_TRANSITION of its own.
+SealedChamber_InnerRoom_OnTransition_EP::
+	setvar VAR_0x8004, LEGENDARY_SLOT_SEALED_CHAMBER
+	special UpdateLegendarySlot
+	end
+
+@ emerald+: rotating legendary slot. The shared encounter does the work.
+SealedChamber_InnerRoom_EventScript_LegendarySlot::
+	setvar VAR_0x8004, LEGENDARY_SLOT_SEALED_CHAMBER
+	goto EventScript_LegendarySlotEncounter
+	end

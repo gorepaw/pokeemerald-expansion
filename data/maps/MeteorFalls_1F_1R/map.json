@@ -149,6 +149,32 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MeteorFalls_1F_1R_EventScript_ProfCozmo",
       "flag": "FLAG_HIDE_METEOR_FALLS_1F_1R_COZMO"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_VAR_0",
+      "x": 16,
+      "y": 21,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "MeteorFalls_1F_1R_EventScript_LegendarySlot",
+      "flag": "FLAG_EP_HIDE_SLOT_METEOR_FALLS"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(JIRACHI)",
+      "x": 16,
+      "y": 21,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "MeteorFalls_1F_1R_EventScript_Jirachi",
+      "flag": "FLAG_EP_HIDE_JIRACHI"
     }
   ],
   "warp_events": [

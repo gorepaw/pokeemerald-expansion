@@ -12,6 +12,7 @@
 #include "metaprogram.h"
 #include "constants/global.h"
 #include "constants/flags.h"
+#include "constants/legendary_slots.h" // emerald+: NUM_LEGENDARY_SLOTS, used in SaveBlock1
 #include "constants/vars.h"
 #include "constants/species.h"
 #include "constants/pokedex.h"
@@ -1117,7 +1118,12 @@ struct SaveBlock1
     /*0x560*/ struct Bag bag;
     /*0x848*/ struct Pokeblock pokeblocks[POKEBLOCKS_COUNT];
 #if FREE_EXTRA_SEEN_FLAGS_SAVEBLOCK1 == FALSE
-    /*0x988*/ u8 filler1[0x34]; // Previously Dex Flags, feel free to remove.
+    // emerald+: one state byte per rotating legendary slot, carved out of the
+    // dead Dex-flag filler rather than added on. Taking it from here keeps
+    // sizeof(SaveBlock1) and every later offset unchanged, and costs none of
+    // the 22 remaining script vars.
+    /*0x988*/ u8 legendarySlots[NUM_LEGENDARY_SLOTS];
+    /*0x99B*/ u8 filler1[0x34 - NUM_LEGENDARY_SLOTS]; // Previously Dex Flags.
 #endif //FREE_EXTRA_SEEN_FLAGS_SAVEBLOCK1
     /*0x9BC*/ u16 berryBlenderRecords[3];
     /*0x9C2*/ u8 unused_9C2[2];

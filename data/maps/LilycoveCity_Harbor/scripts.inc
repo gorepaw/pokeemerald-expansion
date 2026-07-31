@@ -93,6 +93,10 @@ LilycoveCity_Harbor_EventScript_GoToSlateport::
 LilycoveCity_Harbor_EventScript_GoToVermilion::
 	msgbox LilycoveCity_Harbor_Text_VermilionItIs, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, LilycoveCity_Harbor_EventScript_FerryDestinationChangeMind
+	@ emerald+: the Seagallop to the Sevii Islands is scripted in full upstream
+	@ but gated behind an FRLG story var nothing here ever advances, which left
+	@ Mt. Ember - and Moltres - unreachable. 5 is the Rainbow Pass state.
+	setvar VAR_MAP_SCENE_ONE_ISLAND_POKEMON_CENTER_1F, 5
 	call LilycoveCity_Harbor_EventScript_BoardFerry
 	warp MAP_VERMILION_CITY, 23, 33
 	waitstate

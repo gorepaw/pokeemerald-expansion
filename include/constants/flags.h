@@ -1656,7 +1656,50 @@
 #define NUM_FRLG_FLAGS   714
 #define FRLG_FLAGS_END   (FRLG_FLAGS_START + NUM_FRLG_FLAGS - 1)
 
-#define FLAGS_COUNT (FRLG_FLAGS_END + 1)
+// emerald+: the rotating legendary slots. A contiguous block of its own for the
+// same reason the FRLG block is one - scattering these through the unused-flag
+// holes makes them impossible to audit later. Five Gen 1-3 legendaries that had
+// no home get a static each here, and all 19 slots get a hide flag for the
+// successor object that shares their tile.
+#define EP_FLAGS_START (FRLG_FLAGS_END + 1)
+
+#define FLAG_EP_FOUGHT_RAIKOU                  (EP_FLAGS_START + 0)
+#define FLAG_EP_FOUGHT_ENTEI                   (EP_FLAGS_START + 1)
+#define FLAG_EP_FOUGHT_SUICUNE                 (EP_FLAGS_START + 2)
+#define FLAG_EP_FOUGHT_CELEBI                  (EP_FLAGS_START + 3)
+#define FLAG_EP_FOUGHT_JIRACHI                 (EP_FLAGS_START + 4)
+
+#define FLAG_EP_HIDE_RAIKOU                    (EP_FLAGS_START + 5)
+#define FLAG_EP_HIDE_ENTEI                     (EP_FLAGS_START + 6)
+#define FLAG_EP_HIDE_SUICUNE                   (EP_FLAGS_START + 7)
+#define FLAG_EP_HIDE_CELEBI                    (EP_FLAGS_START + 8)
+#define FLAG_EP_HIDE_JIRACHI                   (EP_FLAGS_START + 9)
+
+// One per slot, in enum LegendarySlot order.
+#define FLAG_EP_HIDE_SLOT_SEAFOAM_ISLANDS      (EP_FLAGS_START + 10)
+#define FLAG_EP_HIDE_SLOT_POWER_PLANT          (EP_FLAGS_START + 11)
+#define FLAG_EP_HIDE_SLOT_MT_EMBER             (EP_FLAGS_START + 12)
+#define FLAG_EP_HIDE_SLOT_CERULEAN_CAVE        (EP_FLAGS_START + 13)
+#define FLAG_EP_HIDE_SLOT_NAVEL_ROCK_BASE      (EP_FLAGS_START + 14)
+#define FLAG_EP_HIDE_SLOT_NAVEL_ROCK_SUMMIT    (EP_FLAGS_START + 15)
+#define FLAG_EP_HIDE_SLOT_BIRTH_ISLAND         (EP_FLAGS_START + 16)
+#define FLAG_EP_HIDE_SLOT_FARAWAY_ISLAND       (EP_FLAGS_START + 17)
+#define FLAG_EP_HIDE_SLOT_NEW_MAUVILLE         (EP_FLAGS_START + 18)
+#define FLAG_EP_HIDE_SLOT_FIERY_PATH           (EP_FLAGS_START + 19)
+#define FLAG_EP_HIDE_SLOT_SHOAL_CAVE           (EP_FLAGS_START + 20)
+#define FLAG_EP_HIDE_SLOT_VIRIDIAN_FOREST      (EP_FLAGS_START + 21)
+#define FLAG_EP_HIDE_SLOT_METEOR_FALLS         (EP_FLAGS_START + 22)
+#define FLAG_EP_HIDE_SLOT_SKY_PILLAR           (EP_FLAGS_START + 23)
+#define FLAG_EP_HIDE_SLOT_DESERT_RUINS         (EP_FLAGS_START + 24)
+#define FLAG_EP_HIDE_SLOT_ISLAND_CAVE          (EP_FLAGS_START + 25)
+#define FLAG_EP_HIDE_SLOT_ANCIENT_TOMB         (EP_FLAGS_START + 26)
+#define FLAG_EP_HIDE_SLOT_CAVE_OF_ORIGIN       (EP_FLAGS_START + 27)
+#define FLAG_EP_HIDE_SLOT_SEALED_CHAMBER       (EP_FLAGS_START + 28)
+
+#define NUM_EP_FLAGS   32
+#define EP_FLAGS_END   (EP_FLAGS_START + NUM_EP_FLAGS - 1)
+
+#define FLAGS_COUNT (EP_FLAGS_END + 1)
 
 // Special Flags (Stored in EWRAM (sSpecialFlags), not in the SaveBlock)
 #define SPECIAL_FLAGS_START                     0x4000

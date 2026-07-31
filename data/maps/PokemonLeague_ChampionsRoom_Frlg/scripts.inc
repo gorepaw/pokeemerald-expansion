@@ -61,6 +61,12 @@ PokemonLeague_ChampionsRoom_EventScript_EnterRoom::
 	clearflag FLAG_TEMP_5
 	setflag FLAG_DEFEATED_CHAMP
 	setflag FLAG_TEMP_4
+	@ emerald+: Kanto's Champion falling is what refills the legendary spots.
+	@ Every slot the player has cleared advances to its next occupant; slots
+	@ still holding their legendary are untouched.
+	special AdvanceLegendarySlotsOnChampion
+	specialvar VAR_RESULT, GiveNextEventTicket
+	call_if_ne VAR_RESULT, ITEM_NONE, PokemonLeague_ChampionsRoom_EventScript_GiveTicket
 	msgbox PokemonLeague_ChampionsRoom_Text_PostBattle
 	playbgm MUS_RG_SLOW_PALLET, 0
 	addobject LOCALID_CHAMPIONS_ROOM_PROF_OAK
@@ -333,3 +339,20 @@ PokemonLeague_ChampionsRoom_Text_OakPlayerComeWithMe::
 	.string "{PLAYER}!\n"
 	.string "Come with me!$"
 
+
+@ emerald+: one event ticket per Kanto Champion win - Mystic, then Aurora, then
+@ the Old Sea Map. Each opens a ferry route that already exists in full, so this
+@ is what makes Lugia, Ho-Oh, Deoxys and Mew reachable.
+PokemonLeague_ChampionsRoom_EventScript_GiveTicket::
+	bufferitemname STR_VAR_1, VAR_RESULT
+	msgbox PokemonLeague_ChampionsRoom_Text_ReceivedTicket, MSGBOX_DEFAULT
+	return
+
+PokemonLeague_ChampionsRoom_Text_ReceivedTicket::
+	.string "OAK: Before you go, {PLAYER}…\p"
+	.string "A sailor left this for the CHAMPION.\p"
+	.string "{PLAYER} received the {STR_VAR_1}!\p"
+	.string "OAK: They say it leads somewhere no\n"
+	.string "map records.\l"
+	.string "Ask at a harbour in HOENN or here\l"
+	.string "in VERMILION CITY.$"

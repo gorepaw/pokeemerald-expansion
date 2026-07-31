@@ -2536,6 +2536,17 @@ bool8 ScrCmd_setwildbattle(struct ScriptContext *ctx)
     return FALSE;
 }
 
+// emerald+: setwildbattle reads its species as a literal halfword baked into
+// the script, so an encounter whose species changes over the course of the game
+// cannot use it. This lives here rather than with the rest of the legendary
+// slot code because sIsScriptedWildDouble is static to this file, and leaving
+// it stale would start a double battle against one Pokemon.
+void SetScriptedWildMon(u16 species, u8 level)
+{
+    CreateScriptedWildMon(species, level, ITEM_NONE);
+    sIsScriptedWildDouble = FALSE;
+}
+
 bool8 ScrCmd_dowildbattle(struct ScriptContext *ctx)
 {
     Script_RequestEffects(SCREFF_V1 | SCREFF_HARDWARE);

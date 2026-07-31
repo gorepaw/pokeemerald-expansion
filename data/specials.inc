@@ -640,3 +640,10 @@ gSpecials::
 	def_special UpdateTrainerCardPhotoIcons
 	def_special StickerManGetBragFlags
 	def_special CheckAddCoins
+
+@ emerald+: rotating legendary slots.
+	def_special UpdateLegendarySlot
+	def_special SetUpLegendarySlotBattle
+	def_special ArmLegendarySlot
+	def_special AdvanceLegendarySlotsOnChampion
+	def_special GiveNextEventTicket

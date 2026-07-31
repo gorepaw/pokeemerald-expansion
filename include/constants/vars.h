@@ -276,7 +276,11 @@
 #define VAR_UNUSED_0x40FE                                0x40FE // Unused Var
 #define VAR_UNUSED_0x40FF                                0x40FF // Unused Var
 
-#define VARS_END                                         0x40FF
+// emerald+: 64 spare vars. Only 22 of the original 256 were unused, and
+// extending this later would shift SaveBlock1 exactly as growing the flags
+// does. Allocate from EP_VARS_START upward. Costs 128 bytes.
+#define EP_VARS_START                                    0x4100
+#define VARS_END                                         0x413F
 #define VARS_COUNT                                       (VARS_END - VARS_START + 1)
 
 #define SPECIAL_VARS_START            0x8000

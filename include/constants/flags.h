@@ -1696,7 +1696,12 @@
 #define FLAG_EP_HIDE_SLOT_CAVE_OF_ORIGIN       (EP_FLAGS_START + 27)
 #define FLAG_EP_HIDE_SLOT_SEALED_CHAMBER       (EP_FLAGS_START + 28)
 
-#define NUM_EP_FLAGS   32
+// Sized with headroom on purpose. flags[] and vars[] are adjacent in
+// SaveBlock1, so growing this later shifts every field below them and breaks
+// every save - which makes spare flags far cheaper to buy now than to need
+// later. QOL.md already lists expansion options that are inert until you
+// assign them a flag. 29 used, 227 free, at a cost of 28 bytes.
+#define NUM_EP_FLAGS   256
 #define EP_FLAGS_END   (EP_FLAGS_START + NUM_EP_FLAGS - 1)
 
 #define FLAGS_COUNT (EP_FLAGS_END + 1)

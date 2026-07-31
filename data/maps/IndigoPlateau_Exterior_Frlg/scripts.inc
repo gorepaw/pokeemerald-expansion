@@ -6,7 +6,31 @@ IndigoPlateau_Exterior_Frlg_MapScripts::
 IndigoPlateau_Exterior_OnTransition::
 	setworldmapflag FLAG_WORLD_MAP_INDIGO_PLATEAU_EXTERIOR
 	call_if_eq VAR_MAP_SCENE_INDIGO_PLATEAU_EXTERIOR, 1, IndigoPlateau_Exterior_EventScript_PlayCreditsMusic
+	@ emerald+: standing here means you are not mid-run - the E4 doors seal
+	@ behind you - so this is where a completed run is wound back.
+	call_if_set FLAG_DEFEATED_CHAMP, IndigoPlateau_Exterior_EventScript_ResetLeagueRun
 	end
+
+@ emerald+: nothing upstream cleared these in an Emerald build, so beating the
+@ Champion once stopped his room's entry trigger for good: no rematches for
+@ money, and the legendary rotation would have advanced a single time. The
+@ Champion's gate is his TRAINER flag, not FLAG_DEFEATED_CHAMP, which is why
+@ both have to go.
+IndigoPlateau_Exterior_EventScript_ResetLeagueRun::
+	clearflag FLAG_DEFEATED_LORELEI
+	clearflag FLAG_DEFEATED_BRUNO
+	clearflag FLAG_DEFEATED_AGATHA
+	clearflag FLAG_DEFEATED_LANCE
+	clearflag FLAG_DEFEATED_CHAMP
+	cleartrainerflag TRAINER_CHAMPION_FIRST_SQUIRTLE
+	cleartrainerflag TRAINER_CHAMPION_FIRST_BULBASAUR
+	cleartrainerflag TRAINER_CHAMPION_FIRST_CHARMANDER
+	cleartrainerflag TRAINER_CHAMPION_REMATCH_SQUIRTLE
+	cleartrainerflag TRAINER_CHAMPION_REMATCH_BULBASAUR
+	cleartrainerflag TRAINER_CHAMPION_REMATCH_CHARMANDER
+	@ the room-to-room progression counter, back to the start
+	setvar VAR_MAP_SCENE_POKEMON_LEAGUE, 0
+	return
 
 IndigoPlateau_Exterior_EventScript_PlayCreditsMusic::
 	playbgm MUS_CREDITS, 0

@@ -117,9 +117,12 @@ for s in GEN13:
 
 # obtainable outside the wild tables
 SCRIPT = {
-    "TREECKO", "TORCHIC", "MUDKIP",
-    "BULBASAUR", "CHARMANDER", "SQUIRTLE",     # Mr. Stone      (emerald+)
-    "CHIKORITA", "CYNDAQUIL", "TOTODILE",      # Steven, R118   (emerald+)
+    # The nine starters are deliberately NOT here. You choose one per trio -
+    # Birch, Mr. Stone, Steven - so six of the nine are unobtainable by gift in
+    # any single save, and counting all nine overstated the real figure. Their
+    # fully-evolved forms live in Kanto's wild tables instead, so the wild sets
+    # below pick them up honestly.
+
     # Both spellings: the national dex calls it CASTFORM, the species constant
     # is CASTFORM_NORMAL, and the two sets are keyed differently.
     "CASTFORM_NORMAL", "CASTFORM",             # Weather Institute gift
@@ -222,3 +225,49 @@ if ord49:
     print(f"\n--- {len(ord49)} ordinary Gen 4-9 families still homeless ---")
     for fam in sorted(ord49.values(), key=lambda v: NUM.get(v[0], 9999)):
         print("   ", ", ".join(sorted(fam, key=lambda s: NUM.get(s, 9999))))
+
+
+# ==========================================================================
+# COMPLETABILITY: can a single save legally obtain every family?
+# ==========================================================================
+# Wild tables in both regions, plus guaranteed gifts, plus every legendary the
+# rotating-slot system hands out. This is the number that answers "is the
+# Pokedex finishable", which the two figures above deliberately do not.
+import re as _re
+
+_leg = open("src/legendary_slots.c", encoding="utf-8").read()
+_slots = set(_re.findall(r'SPECIES_(\w+)', _leg)) - {"NONE"}
+
+# the 13 Gen 1-3 legendaries that own the slots, and the story statics
+_orig = {"ARTICUNO", "ZAPDOS", "MOLTRES", "MEWTWO", "MEW", "RAIKOU", "ENTEI",
+         "SUICUNE", "LUGIA", "HO_OH", "CELEBI", "JIRACHI", "DEOXYS",
+         "DEOXYS_NORMAL", "KYOGRE", "GROUDON", "RAYQUAZA",
+         "REGIROCK", "REGICE", "REGISTEEL",
+         # roamer plus Southern Island, which the Eon Ticket now reaches
+         "LATIAS", "LATIOS"}
+
+_gift = {"CASTFORM_NORMAL", "CASTFORM", "LILEEP", "ANORITH",  # both fossils:
+         # Desert Underpass hands over whichever one Mirage Tower did not
+         "WYNAUT", "FEEBAS", "KECLEON", "BELDUM"}
+
+_reach = set(hoenn) | set(kanto) | _slots | _orig | _gift
+_have = {fam2[x] for x in _reach if x in fam2}
+
+_missing = collections.OrderedDict()
+for _s in GEN13 + GEN49:
+    if fam2[_s] in _have:
+        continue
+    _missing.setdefault(fam2[_s], []).append(_s)
+
+print()
+print("=" * 74)
+print("COMPLETABILITY - obtainable in ONE save (both regions, gifts, statics)")
+print("=" * 74)
+_tot = len(set(fam2[x] for x in GEN13 + GEN49))
+print(f"families obtainable : {_tot - len(_missing)}/{_tot}")
+if _missing:
+    print(f"NOT obtainable      : {len(_missing)}")
+    for _f in _missing.values():
+        print("    " + ", ".join(sorted(_f, key=lambda x: NUM.get(x, 9999))))
+else:
+    print("every family in the game is obtainable in a single save")

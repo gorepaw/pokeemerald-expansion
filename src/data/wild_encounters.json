@@ -12349,7 +12349,7 @@
               {
                 "min_level": 60,
                 "max_level": 60,
-                "species": "SPECIES_DUGTRIO"
+                "species": "SPECIES_SWAMPERT"
               },
               {
                 "min_level": 60,
@@ -14369,7 +14369,7 @@
               {
                 "min_level": 67,
                 "max_level": 67,
-                "species": "SPECIES_GOLDUCK"
+                "species": "SPECIES_FERALIGATR"
               },
               {
                 "min_level": 67,
@@ -14513,7 +14513,7 @@
               {
                 "min_level": 67,
                 "max_level": 67,
-                "species": "SPECIES_DEWGONG"
+                "species": "SPECIES_BLASTOISE"
               },
               {
                 "min_level": 67,
@@ -15254,7 +15254,7 @@
               {
                 "min_level": 70,
                 "max_level": 70,
-                "species": "SPECIES_MACHOKE"
+                "species": "SPECIES_BLAZIKEN"
               },
               {
                 "min_level": 67,
@@ -15714,7 +15714,7 @@
               {
                 "min_level": 63,
                 "max_level": 63,
-                "species": "SPECIES_MAGCARGO"
+                "species": "SPECIES_CHARIZARD"
               },
               {
                 "min_level": 65,
@@ -15818,7 +15818,7 @@
               {
                 "min_level": 63,
                 "max_level": 63,
-                "species": "SPECIES_MAGCARGO"
+                "species": "SPECIES_TYPHLOSION"
               },
               {
                 "min_level": 74,
@@ -18693,7 +18693,7 @@
               {
                 "min_level": 54,
                 "max_level": 54,
-                "species": "SPECIES_JUMPLUFF"
+                "species": "SPECIES_VENUSAUR"
               },
               {
                 "min_level": 56,
@@ -21609,7 +21609,7 @@
               {
                 "min_level": 61,
                 "max_level": 61,
-                "species": "SPECIES_TANGELA"
+                "species": "SPECIES_MEGANIUM"
               },
               {
                 "min_level": 61,
@@ -21763,7 +21763,7 @@
               {
                 "min_level": 61,
                 "max_level": 61,
-                "species": "SPECIES_TANGELA"
+                "species": "SPECIES_SCEPTILE"
               },
               {
                 "min_level": 61,

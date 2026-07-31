@@ -100,6 +100,9 @@ static const u16 sEventTickets[][2] =
     { ITEM_MYSTIC_TICKET,  FLAG_ENABLE_SHIP_NAVEL_ROCK   },  // Lugia, Ho-Oh
     { ITEM_AURORA_TICKET,  FLAG_ENABLE_SHIP_BIRTH_ISLAND },  // Deoxys
     { ITEM_OLD_SEA_MAP,    FLAG_ENABLE_SHIP_FARAWAY_ISLAND }, // Mew
+    // Southern Island holds whichever of Latias/Latios is NOT the roamer, so
+    // without this the second of the pair is unobtainable in a single save.
+    { ITEM_EON_TICKET,     FLAG_ENABLE_SHIP_SOUTHERN_ISLAND },
 };
 
 // The slot whose battle is currently running. Saved so the script does not have

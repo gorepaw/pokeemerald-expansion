@@ -16,6 +16,9 @@ PewterCity_Gym_EventScript_Brock::
 	end
 
 PewterCity_Gym_EventScript_BrockAfterBattle::
+	setvar VAR_0x8004, TRAINER_LEADER_BROCK
+	specialvar VAR_RESULT, ShouldTryRematchBattleForVar
+	goto_if_eq VAR_RESULT, TRUE, PewterCity_Gym_EventScript_BrockRematch
 	goto_if_unset FLAG_GOT_TM39_FROM_BROCK, PewterCity_Gym_EventScript_GiveTM39
 	msgbox PewterCity_Gym_Text_BrockPostBattle
 	release
@@ -92,6 +95,23 @@ PewterCity_Gym_EventScript_GymStatuePostVictory::
 	msgbox PewterCity_Gym_Text_GymStatuePlayerWon
 	releaseall
 	end
+
+@ emerald+: the leader wants a rematch. The same double battle runs
+@ again - trainerbattle_two_trainers has no already-fought gate - and
+@ HandleRematchVarsOnBattleEnd clears the want-rematch state on the win.
+PewterCity_Gym_EventScript_BrockRematch::
+	msgbox PewterCity_Gym_Text_BrockPreRematch, MSGBOX_DEFAULT
+	closemessage
+	trainerbattle_two_trainers TRAINER_LEADER_BROCK, PewterCity_Gym_Text_BrockDefeat, TRAINER_JOHTO_FALKNER, PewterCity_Gym_Text_FalknerDefeat
+	msgbox PewterCity_Gym_Text_BrockPostRematch, MSGBOX_AUTOCLOSE
+	end
+
+PewterCity_Gym_Text_BrockPreRematch::
+	.string "So you came back for another go?\n"
+	.string "Then let us not hold back!$"
+
+PewterCity_Gym_Text_BrockPostRematch::
+	.string "Splendid. You are stronger still.$"
 
 PewterCity_Gym_Text_BrockIntro::
 	.string "So, you're here. I'm BROCK.\n"

@@ -13,6 +13,9 @@ ViridianCity_Gym_EventScript_Giovanni::
 	end
 
 ViridianCity_Gym_EventScript_Giovanni_AfterBattle::
+	setvar VAR_0x8004, TRAINER_LEADER_GIOVANNI
+	specialvar VAR_RESULT, ShouldTryRematchBattleForVar
+	goto_if_eq VAR_RESULT, TRUE, ViridianCity_Gym_EventScript_GiovanniRematch
 	goto_if_unset FLAG_GOT_TM26_FROM_GIOVANNI, ViridianCity_Gym_EventScript_GiveTM26
 	msgbox ViridianCity_Gym_Text_GiovanniPostBattle
 	closemessage
@@ -112,6 +115,23 @@ ViridianCity_Gym_EventScript_GymStatuePostVictory::
 	msgbox ViridianCity_Gym_Text_GymStatuePlayerWon
 	releaseall
 	end
+
+@ emerald+: the leader wants a rematch. The same double battle runs
+@ again - trainerbattle_two_trainers has no already-fought gate - and
+@ HandleRematchVarsOnBattleEnd clears the want-rematch state on the win.
+ViridianCity_Gym_EventScript_GiovanniRematch::
+	msgbox ViridianCity_Gym_Text_GiovanniPreRematch, MSGBOX_DEFAULT
+	closemessage
+	trainerbattle_two_trainers TRAINER_LEADER_GIOVANNI, ViridianCity_Gym_Text_GiovanniDefeat, TRAINER_JOHTO_CLAIR, ViridianCity_Gym_Text_ClairDefeat
+	msgbox ViridianCity_Gym_Text_GiovanniPostRematch, MSGBOX_AUTOCLOSE
+	end
+
+ViridianCity_Gym_Text_GiovanniPreRematch::
+	.string "So you came back for another go?\n"
+	.string "Then let us not hold back!$"
+
+ViridianCity_Gym_Text_GiovanniPostRematch::
+	.string "Splendid. You are stronger still.$"
 
 ViridianCity_Gym_Text_GiovanniIntro::
 	.string "Fwahahaha!\n"

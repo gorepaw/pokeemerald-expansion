@@ -213,6 +213,9 @@ VermilionCity_Gym_EventScript_LtSurge::
 	end
 
 VermilionCity_Gym_EventScript_LtSurge_AfterBattle::
+	setvar VAR_0x8004, TRAINER_LEADER_LT_SURGE
+	specialvar VAR_RESULT, ShouldTryRematchBattleForVar
+	goto_if_eq VAR_RESULT, TRUE, VermilionCity_Gym_EventScript_LtSurgeRematch
 	goto_if_unset FLAG_GOT_TM34_FROM_SURGE, VermilionCity_Gym_EventScript_GiveTM34
 	msgbox VermilionCity_Gym_Text_LtSurgePostBattle
 	release
@@ -293,6 +296,23 @@ VermilionCity_Gym_EventScript_GymStatuePostVictory::
 	msgbox VermilionCity_Gym_Text_GymStatuePlayerWon
 	releaseall
 	end
+
+@ emerald+: the leader wants a rematch. The same double battle runs
+@ again - trainerbattle_two_trainers has no already-fought gate - and
+@ HandleRematchVarsOnBattleEnd clears the want-rematch state on the win.
+VermilionCity_Gym_EventScript_LtSurgeRematch::
+	msgbox VermilionCity_Gym_Text_LtSurgePreRematch, MSGBOX_DEFAULT
+	closemessage
+	trainerbattle_two_trainers TRAINER_LEADER_LT_SURGE, VermilionCity_Gym_Text_LtSurgeDefeat, TRAINER_JOHTO_WHITNEY, VermilionCity_Gym_Text_WhitneyDefeat
+	msgbox VermilionCity_Gym_Text_LtSurgePostRematch, MSGBOX_AUTOCLOSE
+	end
+
+VermilionCity_Gym_Text_LtSurgePreRematch::
+	.string "So you came back for another go?\n"
+	.string "Then let us not hold back!$"
+
+VermilionCity_Gym_Text_LtSurgePostRematch::
+	.string "Splendid. You are stronger still.$"
 
 VermilionCity_Gym_Text_LtSurgeIntro::
 	.string "Hey, kid! What do you think you're\n"

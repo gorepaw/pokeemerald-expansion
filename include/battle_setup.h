@@ -101,6 +101,7 @@ bool32 IsRematchTrainerIn(u16 mapGroup, u16 mapNum);
 u16 GetLastBeatenRematchTrainerId(u16 trainerId);
 bool8 ShouldTryRematchBattle(void);
 bool8 ShouldTryRematchBattleForTrainerId(u16 trainerId);
+bool8 ShouldTryRematchBattleForVar(void); // emerald+: reads the trainer from VAR_0x8004
 bool8 IsTrainerReadyForRematch(void);
 void ShouldTryGetTrainerScript(void);
 u16 CountMaxPossibleRematch(u16 trainerId);

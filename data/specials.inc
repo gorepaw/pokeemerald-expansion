@@ -78,6 +78,7 @@ gSpecials::
 	def_special DoTrainerApproach, waitstate=1
 	def_special PlayTrainerEncounterMusic
 	def_special ShouldTryRematchBattle
+	def_special ShouldTryRematchBattleForVar @ emerald+: trainer id in VAR_0x8004
 	def_special IsTrainerReadyForRematch
 	def_special BattleSetup_StartRematchBattle, waitstate=1
 	def_special ShowPokemonStorageSystemPC, waitstate=1

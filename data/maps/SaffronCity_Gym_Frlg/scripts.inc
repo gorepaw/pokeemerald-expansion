@@ -13,6 +13,9 @@ SaffronCity_Gym_EventScript_Sabrina::
 	end
 
 SaffronCity_Gym_EventScript_Sabrina_AfterBattle::
+	setvar VAR_0x8004, TRAINER_LEADER_SABRINA
+	specialvar VAR_RESULT, ShouldTryRematchBattleForVar
+	goto_if_eq VAR_RESULT, TRUE, SaffronCity_Gym_EventScript_SabrinaRematch
 	goto_if_unset FLAG_GOT_TM04_FROM_SABRINA, SaffronCity_Gym_EventScript_GiveTM04
 	msgbox SaffronCity_Gym_Text_ExplainTM04
 	release
@@ -103,6 +106,23 @@ SaffronCity_Gym_EventScript_GymStatuePostVictory::
 	msgbox SaffronCity_Gym_Text_GymStatuePlayerWon
 	releaseall
 	end
+
+@ emerald+: the leader wants a rematch. The same double battle runs
+@ again - trainerbattle_two_trainers has no already-fought gate - and
+@ HandleRematchVarsOnBattleEnd clears the want-rematch state on the win.
+SaffronCity_Gym_EventScript_SabrinaRematch::
+	msgbox SaffronCity_Gym_Text_SabrinaPreRematch, MSGBOX_DEFAULT
+	closemessage
+	trainerbattle_two_trainers TRAINER_LEADER_SABRINA, SaffronCity_Gym_Text_SabrinaDefeat, TRAINER_JOHTO_JASMINE, SaffronCity_Gym_Text_JasmineDefeat
+	msgbox SaffronCity_Gym_Text_SabrinaPostRematch, MSGBOX_AUTOCLOSE
+	end
+
+SaffronCity_Gym_Text_SabrinaPreRematch::
+	.string "So you came back for another go?\n"
+	.string "Then let us not hold back!$"
+
+SaffronCity_Gym_Text_SabrinaPostRematch::
+	.string "Splendid. You are stronger still.$"
 
 SaffronCity_Gym_Text_SabrinaIntro::
 	.string "I had a vision of your arrival.\p"

@@ -17,7 +17,18 @@ static const u16 GymLeaderRematches_AfterNewMauville[] = {
     REMATCH_NORMAN,
     REMATCH_WINONA,
     REMATCH_TATE_AND_LIZA,
-    REMATCH_JUAN
+    REMATCH_JUAN,
+    // emerald+: Kanto's leaders join the rotation. This array only, never the
+    // BeforeNewMauville one - Kanto is unreachable until the Hoenn league is
+    // cleared, so a Kanto leader can never want a rematch before that point.
+    REMATCH_KANTO_BROCK,
+    REMATCH_KANTO_MISTY,
+    REMATCH_KANTO_LT_SURGE,
+    REMATCH_KANTO_ERIKA,
+    REMATCH_KANTO_KOGA,
+    REMATCH_KANTO_SABRINA,
+    REMATCH_KANTO_BLAINE,
+    REMATCH_KANTO_GIOVANNI
 };
 
 static const u16 GymLeaderRematches_BeforeNewMauville[] = {

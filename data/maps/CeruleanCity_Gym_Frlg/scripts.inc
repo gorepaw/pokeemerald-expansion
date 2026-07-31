@@ -13,6 +13,9 @@ CeruleanCity_Gym_EventScript_Misty::
 	end
 
 CeruleanCity_Gym_EventScript_Misty_AfterBattle::
+	setvar VAR_0x8004, TRAINER_LEADER_MISTY
+	specialvar VAR_RESULT, ShouldTryRematchBattleForVar
+	goto_if_eq VAR_RESULT, TRUE, CeruleanCity_Gym_EventScript_MistyRematch
 	goto_if_unset FLAG_GOT_TM03_FROM_MISTY, CeruleanCity_Gym_EventScript_GiveTM03
 	msgbox CeruleanCity_Gym_Text_ExplainTM03
 	release
@@ -77,6 +80,23 @@ CeruleanCity_Gym_EventScript_GymStatuePostVictory::
 	msgbox CeruleanCity_Gym_Text_GymStatuePlayerWon
 	releaseall
 	end
+
+@ emerald+: the leader wants a rematch. The same double battle runs
+@ again - trainerbattle_two_trainers has no already-fought gate - and
+@ HandleRematchVarsOnBattleEnd clears the want-rematch state on the win.
+CeruleanCity_Gym_EventScript_MistyRematch::
+	msgbox CeruleanCity_Gym_Text_MistyPreRematch, MSGBOX_DEFAULT
+	closemessage
+	trainerbattle_two_trainers TRAINER_LEADER_MISTY, CeruleanCity_Gym_Text_MistyDefeat, TRAINER_JOHTO_BUGSY, CeruleanCity_Gym_Text_BugsyDefeat
+	msgbox CeruleanCity_Gym_Text_MistyPostRematch, MSGBOX_AUTOCLOSE
+	end
+
+CeruleanCity_Gym_Text_MistyPreRematch::
+	.string "So you came back for another go?\n"
+	.string "Then let us not hold back!$"
+
+CeruleanCity_Gym_Text_MistyPostRematch::
+	.string "Splendid. You are stronger still.$"
 
 CeruleanCity_Gym_Text_MistyIntro::
 	.string "Hi, you're a new face!\p"

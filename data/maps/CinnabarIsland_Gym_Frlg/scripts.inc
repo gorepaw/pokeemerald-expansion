@@ -57,6 +57,9 @@ CinnabarIsland_Gym_EventScript_Blaine::
 	end
 
 CinnabarIsland_Gym_EventScript_Blaine_AfterBattle::
+	setvar VAR_0x8004, TRAINER_LEADER_BLAINE
+	specialvar VAR_RESULT, ShouldTryRematchBattleForVar
+	goto_if_eq VAR_RESULT, TRUE, CinnabarIsland_Gym_EventScript_BlaineRematch
 	goto_if_unset FLAG_GOT_TM38_FROM_BLAINE, CinnabarIsland_Gym_EventScript_GiveTM38
 	msgbox CinnabarIsland_Gym_Text_BlainePostBattle
 	release
@@ -717,6 +720,23 @@ CinnabarIsland_Gym_EventScript_OpenDoor6::
 	setmetatile  6, 10, METATILE_CinnabarGym_Floor, 0
 	setmetatile  7, 10, METATILE_CinnabarGym_Floor_ShadeDiagonal, 0
 	return
+
+@ emerald+: the leader wants a rematch. The same double battle runs
+@ again - trainerbattle_two_trainers has no already-fought gate - and
+@ HandleRematchVarsOnBattleEnd clears the want-rematch state on the win.
+CinnabarIsland_Gym_EventScript_BlaineRematch::
+	msgbox CinnabarIsland_Gym_Text_BlainePreRematch, MSGBOX_DEFAULT
+	closemessage
+	trainerbattle_two_trainers TRAINER_LEADER_BLAINE, CinnabarIsland_Gym_Text_BlaineDefeat, TRAINER_JOHTO_PRYCE, CinnabarIsland_Gym_Text_PryceDefeat
+	msgbox CinnabarIsland_Gym_Text_BlainePostRematch, MSGBOX_AUTOCLOSE
+	end
+
+CinnabarIsland_Gym_Text_BlainePreRematch::
+	.string "So you came back for another go?\n"
+	.string "Then let us not hold back!$"
+
+CinnabarIsland_Gym_Text_BlainePostRematch::
+	.string "Splendid. You are stronger still.$"
 
 CinnabarIsland_Gym_Text_BlaineIntro::
 	.string "Hah!\p"

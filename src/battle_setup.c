@@ -2092,6 +2092,17 @@ bool8 IsTrainerReadyForRematch(void)
     return IsTrainerReadyForRematch_(gRematchTable, TRAINER_BATTLE_PARAM.opponentA);
 }
 
+// emerald+: ShouldTryRematchBattle reads TRAINER_BATTLE_PARAM.opponentA, which is
+// only populated once a trainerbattle command has run. Hoenn's gyms get that for
+// free because trainerbattle_single still executes when the leader is already
+// beaten; Kanto's gyms branch on FLAG_DEFEATED_* first and never reach it. This
+// takes the trainer from VAR_0x8004 so a script can ask about a leader it has
+// not just fought.
+bool8 ShouldTryRematchBattleForVar(void)
+{
+    return ShouldTryRematchBattleForTrainerId(gSpecialVar_0x8004);
+}
+
 static void HandleRematchVarsOnBattleEnd(void)
 {
     if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER) && (I_VS_SEEKER_CHARGING != 0))

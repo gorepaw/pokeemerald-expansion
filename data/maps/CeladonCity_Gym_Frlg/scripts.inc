@@ -13,6 +13,9 @@ CeladonCity_Gym_EventScript_Erika::
 	end
 
 CeladonCity_Gym_EventScript_Erika_AfterBattle::
+	setvar VAR_0x8004, TRAINER_LEADER_ERIKA
+	specialvar VAR_RESULT, ShouldTryRematchBattleForVar
+	goto_if_eq VAR_RESULT, TRUE, CeladonCity_Gym_EventScript_ErikaRematch
 	goto_if_unset FLAG_GOT_TM19_FROM_ERIKA, CeladonCity_Gym_EventScript_GiveTM19
 	famechecker FAMECHECKER_ERIKA, 4
 	msgbox CeladonCity_Gym_Text_ErikaPostBattle
@@ -91,6 +94,23 @@ CeladonCity_Gym_EventScript_GymStatuePostVictory::
 	msgbox CeladonCity_Gym_Text_GymStatuePlayerWon
 	releaseall
 	end
+
+@ emerald+: the leader wants a rematch. The same double battle runs
+@ again - trainerbattle_two_trainers has no already-fought gate - and
+@ HandleRematchVarsOnBattleEnd clears the want-rematch state on the win.
+CeladonCity_Gym_EventScript_ErikaRematch::
+	msgbox CeladonCity_Gym_Text_ErikaPreRematch, MSGBOX_DEFAULT
+	closemessage
+	trainerbattle_two_trainers TRAINER_LEADER_ERIKA, CeladonCity_Gym_Text_ErikaDefeat, TRAINER_JOHTO_MORTY, CeladonCity_Gym_Text_MortyDefeat
+	msgbox CeladonCity_Gym_Text_ErikaPostRematch, MSGBOX_AUTOCLOSE
+	end
+
+CeladonCity_Gym_Text_ErikaPreRematch::
+	.string "So you came back for another go?\n"
+	.string "Then let us not hold back!$"
+
+CeladonCity_Gym_Text_ErikaPostRematch::
+	.string "Splendid. You are stronger still.$"
 
 CeladonCity_Gym_Text_ErikaIntro::
 	.string "Hello…\n"

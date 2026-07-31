@@ -13,6 +13,9 @@ FuchsiaCity_Gym_EventScript_Koga::
 	end
 
 FuchsiaCity_Gym_EventScript_Koga_AfterBattle::
+	setvar VAR_0x8004, TRAINER_LEADER_KOGA
+	specialvar VAR_RESULT, ShouldTryRematchBattleForVar
+	goto_if_eq VAR_RESULT, TRUE, FuchsiaCity_Gym_EventScript_KogaRematch
 	goto_if_unset FLAG_GOT_TM06_FROM_KOGA, FuchsiaCity_Gym_EventScript_GiveTM06
 	msgbox FuchsiaCity_Gym_Text_KogaPostBattle
 	release
@@ -97,6 +100,23 @@ FuchsiaCity_Gym_EventScript_GymStatuePostVictory::
 	msgbox FuchsiaCity_Gym_Text_GymStatuePlayerWon
 	releaseall
 	end
+
+@ emerald+: the leader wants a rematch. The same double battle runs
+@ again - trainerbattle_two_trainers has no already-fought gate - and
+@ HandleRematchVarsOnBattleEnd clears the want-rematch state on the win.
+FuchsiaCity_Gym_EventScript_KogaRematch::
+	msgbox FuchsiaCity_Gym_Text_KogaPreRematch, MSGBOX_DEFAULT
+	closemessage
+	trainerbattle_two_trainers TRAINER_LEADER_KOGA, FuchsiaCity_Gym_Text_KogaDefeat, TRAINER_JOHTO_JANINE, FuchsiaCity_Gym_Text_JanineDefeat
+	msgbox FuchsiaCity_Gym_Text_KogaPostRematch, MSGBOX_AUTOCLOSE
+	end
+
+FuchsiaCity_Gym_Text_KogaPreRematch::
+	.string "So you came back for another go?\n"
+	.string "Then let us not hold back!$"
+
+FuchsiaCity_Gym_Text_KogaPostRematch::
+	.string "Splendid. You are stronger still.$"
 
 FuchsiaCity_Gym_Text_KogaIntro::
 	.string "KOGA: Fwahahaha!\p"
